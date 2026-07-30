@@ -64,3 +64,39 @@ Sabiparche: proyecto público de pruebas operativo
 
 K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
 Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:INICIO -->
+
+# Auditoría: primer intento de publicación documental
+
+## Objetivo
+
+Crear una rama dedicada a explicar públicamente las pruebas realizadas con GitHub.
+
+## Operaciones realizadas
+
+```powershell
+git switch -c auditoria-real/evidencias-github
+git add <documentacion>
+git commit -m "auditoria: publica evidencias empiricas"
+git push origin auditoria-real/evidencias-github
+```
+
+## Resultado
+
+El intento no generó un commit nuevo con las evidencias previstas.
+
+## Criterio de publicación
+
+Una publicación documental solo queda confirmada cuando:
+
+- existe un commit distinto de la base;
+- la rama remota apunta a ese commit;
+- el contenido documental está incluido en el árbol del commit.
+
+## Estado
+
+**INTENTO DE PUBLICACIÓN NO CONFIRMADO**
+
+<!-- SABIPARCHE-AUDITORIA:FIN -->
+
