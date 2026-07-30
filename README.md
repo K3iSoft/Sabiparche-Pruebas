@@ -64,3 +64,45 @@ Sabiparche: proyecto público de pruebas operativo
 
 K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
 Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:INICIO -->
+
+# Auditoría empírica: primer ensayo de concurrencia con Sabiparche
+
+## Objetivo
+
+Comprobar si `github sync` detectaba que la rama remota había avanzado durante una sincronización.
+
+## Comando de Sabiparche ensayado
+
+```powershell
+sabiparche github sync `
+    --root <clon-local> `
+    --base auditoria-real/sync-20260730-201658 `
+    --validate <validacion-lenta>
+```
+
+## Escenario previsto
+
+1. Publicar una primera mutación.
+2. Iniciar `github sync`.
+3. Mantener activa la validación.
+4. Publicar una segunda mutación.
+5. Observar si Sabiparche rechazaba la cabeza anterior.
+
+## Problema de la prueba
+
+La orden usada para retrasar la validación no fue interpretada completamente. El intérprete se inició sin ejecutar correctamente la espera prevista.
+
+## Resultado
+
+No quedó garantizado que GitHub cambiara mientras Sabiparche seguía validando.
+
+## Estado
+
+**PRUEBA INVÁLIDA**
+
+Esta rama conserva el ensayo, pero no demuestra éxito ni fallo de Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:FIN -->
+
