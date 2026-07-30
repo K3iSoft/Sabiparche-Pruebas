@@ -1,0 +1,205 @@
+{
+  "schema": 2,
+  "generated_at": "2026-07-30T21:42:28.9192325Z",
+  "branch": "prueba/github-evidencias-release",
+  "area": "release",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-branch-empirical-adversarial",
+  "classification": "POSSIBLE_GAPS_OR_BUGS",
+  "passed": false,
+  "fully_closed": false,
+  "total_tests": 15,
+  "passed_tests": 14,
+  "failed_tests": 1,
+  "failed_test_names": [
+    "empty-certificate-file"
+  ],
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "valid-release-plan",
+      "type": "positive",
+      "expected": "Calcula hashes reales de certificado y manifest.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "manifest_hash": "bb9a5a5e12211a80967276c0254f58ac76d056a05ba30e1f906b949b67804a18",
+        "exit_code": 0,
+        "certificate_hash": "f7b81cdb6a3d24abddccb175a1bfcb7988291909f3a6659b17c7a6b95d71dd06"
+      }
+    },
+    {
+      "number": 2,
+      "name": "missing-certificate",
+      "type": "negative",
+      "expected": "Rechaza certificado inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: la ruta no existe: C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-evidencias-release\\release\\missing.json\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 3,
+      "name": "missing-manifest",
+      "type": "negative",
+      "expected": "Rechaza manifest inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: la ruta no existe: C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-evidencias-release\\release\\missing-manifest.json\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 4,
+      "name": "empty-certificates",
+      "type": "negative",
+      "expected": "Exige al menos un certificado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: evidencia insuficiente: una release exige certificados y manifests\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 5,
+      "name": "empty-manifests",
+      "type": "negative",
+      "expected": "Exige al menos un manifest.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: evidencia insuficiente: una release exige certificados y manifests\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 6,
+      "name": "duplicate-asset-names",
+      "type": "negative",
+      "expected": "Rechaza nombres de assets duplicados.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en release.assets: nombre de asset duplicado: certificate.json\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 7,
+      "name": "heavy-evidence-without-digest",
+      "type": "negative",
+      "expected": "Rechaza evidencia pesada sin digest.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en release.heavy_evidence_location: formato esperado sha256:<digest>@<ubicacion>\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 8,
+      "name": "short-heavy-digest",
+      "type": "negative",
+      "expected": "Rechaza digest SHA-256 corto.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash no valido en release.heavy_evidence_digest: abc\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 9,
+      "name": "empty-tag",
+      "type": "negative",
+      "expected": "Rechaza etiqueta vacia.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en release.tag: debe ser no vacio y no tener espacios exteriores\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 10,
+      "name": "invalid-release-commit",
+      "type": "negative",
+      "expected": "Rechaza commit malformado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash no valido en release.commit: no-es-un-sha\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 11,
+      "name": "deterministic-evidence-hash",
+      "type": "determinism",
+      "expected": "Produce el mismo evidence_hash.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "hash_2": "2ed4687636b2fbe0f9dfb6de473f37746208dcbed4fc462d0980ea92c4793817",
+        "hash_1": "2ed4687636b2fbe0f9dfb6de473f37746208dcbed4fc462d0980ea92c4793817"
+      }
+    },
+    {
+      "number": 12,
+      "name": "certificate-mutation-detected",
+      "type": "integrity",
+      "expected": "Actualiza el digest tras modificar el archivo.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "hash_after": "e55baf1ed214b7a26a89713637bf0f0880150c3c98f791f7a1566c860a5a783f",
+        "reported_hash": "e55baf1ed214b7a26a89713637bf0f0880150c3c98f791f7a1566c860a5a783f",
+        "hash_before": "f7b81cdb6a3d24abddccb175a1bfcb7988291909f3a6659b17c7a6b95d71dd06"
+      }
+    },
+    {
+      "number": 13,
+      "name": "empty-certificate-file",
+      "type": "negative",
+      "expected": "Rechaza o trata explicitamente un certificado vacio.",
+      "passed": false,
+      "classification": "POSSIBLE_GAP_OR_BUG",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 14,
+      "name": "same-path-repeated",
+      "type": "negative",
+      "expected": "Rechaza el mismo asset repetido.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en release.assets: nombre de asset duplicado: certificate.json\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 15,
+      "name": "unicode-asset-name",
+      "type": "positive",
+      "expected": "Procesa un nombre Unicode seguro.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    }
+  ]
+}

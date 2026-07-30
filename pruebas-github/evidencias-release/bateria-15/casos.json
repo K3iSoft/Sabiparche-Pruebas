@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "area": "release",
+  "total_cases": 15,
+  "cases": [
+    {
+      "number": 1,
+      "name": "valid-release-plan",
+      "type": "positive",
+      "expected": "Calcula hashes reales de certificado y manifest."
+    },
+    {
+      "number": 2,
+      "name": "missing-certificate",
+      "type": "negative",
+      "expected": "Rechaza certificado inexistente."
+    },
+    {
+      "number": 3,
+      "name": "missing-manifest",
+      "type": "negative",
+      "expected": "Rechaza manifest inexistente."
+    },
+    {
+      "number": 4,
+      "name": "empty-certificates",
+      "type": "negative",
+      "expected": "Exige al menos un certificado."
+    },
+    {
+      "number": 5,
+      "name": "empty-manifests",
+      "type": "negative",
+      "expected": "Exige al menos un manifest."
+    },
+    {
+      "number": 6,
+      "name": "duplicate-asset-names",
+      "type": "negative",
+      "expected": "Rechaza nombres de assets duplicados."
+    },
+    {
+      "number": 7,
+      "name": "heavy-evidence-without-digest",
+      "type": "negative",
+      "expected": "Rechaza evidencia pesada sin digest."
+    },
+    {
+      "number": 8,
+      "name": "short-heavy-digest",
+      "type": "negative",
+      "expected": "Rechaza digest SHA-256 corto."
+    },
+    {
+      "number": 9,
+      "name": "empty-tag",
+      "type": "negative",
+      "expected": "Rechaza etiqueta vacia."
+    },
+    {
+      "number": 10,
+      "name": "invalid-release-commit",
+      "type": "negative",
+      "expected": "Rechaza commit malformado."
+    },
+    {
+      "number": 11,
+      "name": "deterministic-evidence-hash",
+      "type": "determinism",
+      "expected": "Produce el mismo evidence_hash."
+    },
+    {
+      "number": 12,
+      "name": "certificate-mutation-detected",
+      "type": "integrity",
+      "expected": "Actualiza el digest tras modificar el archivo."
+    },
+    {
+      "number": 13,
+      "name": "empty-certificate-file",
+      "type": "negative",
+      "expected": "Rechaza o trata explicitamente un certificado vacio."
+    },
+    {
+      "number": 14,
+      "name": "same-path-repeated",
+      "type": "negative",
+      "expected": "Rechaza el mismo asset repetido."
+    },
+    {
+      "number": 15,
+      "name": "unicode-asset-name",
+      "type": "positive",
+      "expected": "Procesa un nombre Unicode seguro."
+    }
+  ]
+}
