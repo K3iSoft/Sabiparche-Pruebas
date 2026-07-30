@@ -67,13 +67,11 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría empírica: primer ensayo de concurrencia con Sabiparche
+# Primer intento de sincronización concurrente
 
-## Objetivo
+La intención era comprobar qué hacía Sabiparche si la rama remota avanzaba mientras `github sync` seguía trabajando.
 
-Comprobar si `github sync` detectaba que la rama remota había avanzado durante una sincronización.
-
-## Comando de Sabiparche ensayado
+## Comando ensayado
 
 ```powershell
 sabiparche github sync `
@@ -82,27 +80,17 @@ sabiparche github sync `
     --validate <validacion-lenta>
 ```
 
-## Escenario previsto
+Primero se publicó una mutación remota. Después se inició la sincronización y se intentó publicar otra mutación durante la fase de validación.
 
-1. Publicar una primera mutación.
-2. Iniciar `github sync`.
-3. Mantener activa la validación.
-4. Publicar una segunda mutación.
-5. Observar si Sabiparche rechazaba la cabeza anterior.
+## Por qué no cuenta como prueba
 
-## Problema de la prueba
+La orden auxiliar no mantuvo abierta la validación como estaba previsto. El intérprete se inició, pero la espera completa no llegó a ejecutarse correctamente.
 
-La orden usada para retrasar la validación no fue interpretada completamente. El intérprete se inició sin ejecutar correctamente la espera prevista.
+No se puede asegurar que el cambio remoto ocurriera mientras Sabiparche seguía dentro de la operación.
 
-## Resultado
+## Balance
 
-No quedó garantizado que GitHub cambiara mientras Sabiparche seguía validando.
-
-## Estado
-
-**PRUEBA INVÁLIDA**
-
-Esta rama conserva el ensayo, pero no demuestra éxito ni fallo de Sabiparche.
+Ensayo inválido. Se conserva para documentar el proceso, pero no demuestra un éxito ni un fallo del programa.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
