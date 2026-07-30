@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:59:34.2213062Z",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "branch": "prueba/github-revert-verificado",
+  "area": "revert",
+  "test": "reprueba-publica-huecos-corregidos",
+  "classification": "PASS_EMPIRICAL",
+  "passed": true,
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "failed_test_names": [],
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "production_repository_modified": false,
+  "force_push_used": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "lowercase",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "expected_accept": true,
+        "supplied_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8",
+        "stderr": "",
+        "observed_accept": true,
+        "exit_code": 0,
+        "canonical_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8"
+      }
+    },
+    {
+      "number": 2,
+      "name": "uppercase",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "expected_accept": true,
+        "supplied_tree": "5B5F6E32D2C2280CF11AED13668E75D821E18DE8",
+        "stderr": "",
+        "observed_accept": true,
+        "exit_code": 0,
+        "canonical_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8"
+      }
+    },
+    {
+      "number": 3,
+      "name": "mixed-case",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "expected_accept": true,
+        "supplied_tree": "5B5F6E32d2c2280Cf11AeD13668E75d821e18De8",
+        "stderr": "",
+        "observed_accept": true,
+        "exit_code": 0,
+        "canonical_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8"
+      }
+    },
+    {
+      "number": 4,
+      "name": "wrong-tree",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "expected_accept": false,
+        "supplied_tree": "0000000000000000000000000000000000000000",
+        "stderr": "sabiparche github: hash distinto en revert.expected_restored_tree: esperado 0000000000000000000000000000000000000000, observado 5b5f6e32d2c2280cf11aed13668e75d821e18de8\r\n",
+        "observed_accept": false,
+        "exit_code": 70,
+        "canonical_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8"
+      }
+    },
+    {
+      "number": 5,
+      "name": "non-hex",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "expected_accept": false,
+        "supplied_tree": "gb5f6e32d2c2280cf11aed13668e75d821e18de8",
+        "stderr": "sabiparche github: hash no valido en revert.expected_restored_tree: gb5f6e32d2c2280cf11aed13668e75d821e18de8\r\n",
+        "observed_accept": false,
+        "exit_code": 70,
+        "canonical_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8"
+      }
+    }
+  ]
+}

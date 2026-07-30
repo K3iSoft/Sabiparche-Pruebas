@@ -1,0 +1,12 @@
+Reprueba publica posterior a la correccion.
+
+Rama: prueba/github-revert-verificado
+Area: revert
+Pruebas: 5
+Pasadas: 5
+Fallidas: 0
+Clasificacion: PASS_EMPIRICAL
+
+No se modifico main.
+No se edito README.md.
+No se uso force push.
