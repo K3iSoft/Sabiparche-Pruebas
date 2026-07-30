@@ -67,13 +67,11 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría empírica: validación fallida y rollback
+# Qué ocurre cuando falla una validación
 
-## Objetivo
+Aunque esta prueba nació para estudiar una carrera remota, terminó comprobando otra propiedad útil: el rechazo transaccional ante una validación fallida.
 
-Mantener abierta la fase de validación mientras otro actor avanzaba la rama remota.
-
-## Comando de Sabiparche ensayado
+## Orden utilizada
 
 ```powershell
 sabiparche github sync `
@@ -82,29 +80,19 @@ sabiparche github sync `
     --validate "ping -n 16 127.0.0.1"
 ```
 
-## Problema de la prueba
+Los argumentos de `ping` no llegaron correctamente. Windows mostró la ayuda del programa y la orden terminó con un código distinto de cero.
 
-Los argumentos de `ping` no llegaron correctamente al proceso. Windows mostró la ayuda del programa y devolvió un estado de error.
+## Respuesta observada
 
-## Validación
+Sabiparche trató la validación como fallida, no confirmó la integración provisional e informó de que el rollback local había sido verificado.
 
-Sabiparche consideró fallida la afirmación porque el comando de validación terminó con un código distinto de cero.
+Eso encaja con el comportamiento transaccional esperado: una afirmación no se confirma cuando una de sus comprobaciones termina con error.
 
-## Integración transaccional
+## Qué queda probado aquí
 
-La integración provisional no fue confirmada.
+Queda comprobado el rechazo ante una validación fallida y la conservación del estado local.
 
-## Rollback
-
-Sabiparche informó que el rollback local había sido verificado.
-
-## Resultado
-
-Se comprobó el rechazo ante una validación fallida, pero no la carrera remota que constituía el objetivo principal.
-
-## Estado
-
-**PRUEBA PARCIAL: RECHAZO Y ROLLBACK CONFIRMADOS**
+No queda comprobada la carrera remota que motivó originalmente el ensayo.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
