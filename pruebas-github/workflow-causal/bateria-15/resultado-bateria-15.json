@@ -1,0 +1,209 @@
+{
+  "schema": 2,
+  "generated_at": "2026-07-30T21:42:06.8141329Z",
+  "branch": "prueba/github-workflow-causal",
+  "area": "workflow",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-branch-empirical-adversarial",
+  "classification": "POSSIBLE_GAPS_OR_BUGS",
+  "passed": false,
+  "fully_closed": false,
+  "total_tests": 15,
+  "passed_tests": 14,
+  "failed_tests": 1,
+  "failed_test_names": [
+    "excessive-permissions"
+  ],
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "valid-workflow",
+      "type": "positive",
+      "expected": "Genera y audita un workflow valido.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "generated": true,
+        "exit_code": 0,
+        "reported_hash": "b82bd9dd6bc3844bd1ecbbc515163adc2da96ae85de4281b674db07cee4a0752",
+        "independent_hash": "b82bd9dd6bc3844bd1ecbbc515163adc2da96ae85de4281b674db07cee4a0752"
+      }
+    },
+    {
+      "number": 2,
+      "name": "missing-merge-group",
+      "type": "negative",
+      "expected": "Rechaza la ausencia de merge_group.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en workflow.audit: el workflow generado no supera la auditoria de seguridad\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 3,
+      "name": "mutable-action",
+      "type": "negative",
+      "expected": "Rechaza referencias mutables.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: referencia de Action mutable o no fijada por SHA: K3iSoft/sabiparche-action@main\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 4,
+      "name": "short-action-sha",
+      "type": "negative",
+      "expected": "Rechaza un SHA incompleto.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: referencia de Action mutable o no fijada por SHA: K3iSoft/sabiparche-action@1234567\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 5,
+      "name": "pull-request-target",
+      "type": "negative",
+      "expected": "Rechaza pull_request_target.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: error JSON: unknown variant `pull_request_target`, expected one of `pull_request`, `push`, `merge_group`, `workflow_dispatch`, `repository_dispatch` at line 21 column 27\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 6,
+      "name": "excessive-permissions",
+      "type": "negative",
+      "expected": "Rechaza permisos excesivos.",
+      "passed": false,
+      "classification": "POSSIBLE_GAP_OR_BUG",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 7,
+      "name": "empty-patch-path",
+      "type": "negative",
+      "expected": "Rechaza una ruta de parche vacia.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: la ruta debe ser relativa y permanecer bajo el repositorio: \r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 8,
+      "name": "workflow-path-traversal",
+      "type": "negative",
+      "expected": "No permite escapar del repositorio.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: la ruta debe ser relativa y permanecer bajo el repositorio: ..\\fuera.yml\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 9,
+      "name": "absolute-workflow-path",
+      "type": "negative",
+      "expected": "Rechaza rutas absolutas.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: la ruta debe ser relativa y permanecer bajo el repositorio: C:\\Windows\\Temp\\sabiparche.yml\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 10,
+      "name": "duplicate-events-normalized",
+      "type": "consistency",
+      "expected": "No duplica merge_group en el YAML.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "merge_group_count": 1,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 11,
+      "name": "deterministic-output",
+      "type": "determinism",
+      "expected": "Dos entradas iguales producen los mismos hashes.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "workflow_hash_1": "b82bd9dd6bc3844bd1ecbbc515163adc2da96ae85de4281b674db07cee4a0752",
+        "evidence_hash_1": "b4ac075d3961f6c5d957a64ea6a83fa73d35a7e91f177e34355abd1a3c59e0e6",
+        "evidence_hash_2": "b4ac075d3961f6c5d957a64ea6a83fa73d35a7e91f177e34355abd1a3c59e0e6",
+        "workflow_hash_2": "b82bd9dd6bc3844bd1ecbbc515163adc2da96ae85de4281b674db07cee4a0752"
+      }
+    },
+    {
+      "number": 12,
+      "name": "invalid-action-reference",
+      "type": "negative",
+      "expected": "Rechaza referencias con formato invalido.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en action_ref: debe tener formato owner/repo@sha\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 13,
+      "name": "empty-events",
+      "type": "negative",
+      "expected": "Rechaza una lista de eventos vacia.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en actions.events: debe existir al menos un evento\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 14,
+      "name": "unicode-patch-path",
+      "type": "positive",
+      "expected": "Mantiene una ruta Unicode segura.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 15,
+      "name": "idempotent-regeneration",
+      "type": "idempotence",
+      "expected": "Regenerar no altera el contenido.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "hash_after": "b82bd9dd6bc3844bd1ecbbc515163adc2da96ae85de4281b674db07cee4a0752",
+        "second_exit_code": 0,
+        "first_exit_code": 0,
+        "hash_before": "b82bd9dd6bc3844bd1ecbbc515163adc2da96ae85de4281b674db07cee4a0752"
+      }
+    }
+  ]
+}

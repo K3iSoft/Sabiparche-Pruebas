@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "area": "workflow",
+  "total_cases": 15,
+  "cases": [
+    {
+      "number": 1,
+      "name": "valid-workflow",
+      "type": "positive",
+      "expected": "Genera y audita un workflow valido."
+    },
+    {
+      "number": 2,
+      "name": "missing-merge-group",
+      "type": "negative",
+      "expected": "Rechaza la ausencia de merge_group."
+    },
+    {
+      "number": 3,
+      "name": "mutable-action",
+      "type": "negative",
+      "expected": "Rechaza referencias mutables."
+    },
+    {
+      "number": 4,
+      "name": "short-action-sha",
+      "type": "negative",
+      "expected": "Rechaza un SHA incompleto."
+    },
+    {
+      "number": 5,
+      "name": "pull-request-target",
+      "type": "negative",
+      "expected": "Rechaza pull_request_target."
+    },
+    {
+      "number": 6,
+      "name": "excessive-permissions",
+      "type": "negative",
+      "expected": "Rechaza permisos excesivos."
+    },
+    {
+      "number": 7,
+      "name": "empty-patch-path",
+      "type": "negative",
+      "expected": "Rechaza una ruta de parche vacia."
+    },
+    {
+      "number": 8,
+      "name": "workflow-path-traversal",
+      "type": "negative",
+      "expected": "No permite escapar del repositorio."
+    },
+    {
+      "number": 9,
+      "name": "absolute-workflow-path",
+      "type": "negative",
+      "expected": "Rechaza rutas absolutas."
+    },
+    {
+      "number": 10,
+      "name": "duplicate-events-normalized",
+      "type": "consistency",
+      "expected": "No duplica merge_group en el YAML."
+    },
+    {
+      "number": 11,
+      "name": "deterministic-output",
+      "type": "determinism",
+      "expected": "Dos entradas iguales producen los mismos hashes."
+    },
+    {
+      "number": 12,
+      "name": "invalid-action-reference",
+      "type": "negative",
+      "expected": "Rechaza referencias con formato invalido."
+    },
+    {
+      "number": 13,
+      "name": "empty-events",
+      "type": "negative",
+      "expected": "Rechaza una lista de eventos vacia."
+    },
+    {
+      "number": 14,
+      "name": "unicode-patch-path",
+      "type": "positive",
+      "expected": "Mantiene una ruta Unicode segura."
+    },
+    {
+      "number": 15,
+      "name": "idempotent-regeneration",
+      "type": "idempotence",
+      "expected": "Regenerar no altera el contenido."
+    }
+  ]
+}
