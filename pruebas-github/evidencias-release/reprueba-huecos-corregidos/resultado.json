@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:59:39.0211660Z",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "branch": "prueba/github-evidencias-release",
+  "area": "release",
+  "test": "reprueba-publica-huecos-corregidos",
+  "classification": "PASS_EMPIRICAL",
+  "passed": true,
+  "total_tests": 10,
+  "passed_tests": 10,
+  "failed_tests": 0,
+  "failed_test_names": [],
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "production_repository_modified": false,
+  "force_push_used": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "reject-zero-bytes",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 0,
+        "stderr": "sabiparche github: evidencia insuficiente: certificado vacio: <temporal>\\evidencias-release\\data\\release\\zero.json\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 2,
+      "name": "reject-spaces-only",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 6,
+        "stderr": "sabiparche github: evidencia insuficiente: certificado vacio: <temporal>\\evidencias-release\\data\\release\\spaces.json\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 3,
+      "name": "reject-empty-object",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 2,
+        "stderr": "sabiparche github: falta el dato obligatorio: release.certificate.operation_id\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 4,
+      "name": "reject-invalid-json",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 1,
+        "stderr": "sabiparche github: error JSON: EOF while parsing an object at line 1 column 1\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 5,
+      "name": "reject-json-array",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 2,
+        "stderr": "sabiparche github: dato no valido en release.certificate: el certificado debe ser un objeto JSON: <temporal>\\evidencias-release\\data\\release\\array.json\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 6,
+      "name": "reject-missing-result",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 58,
+        "stderr": "sabiparche github: evidencia insuficiente: el certificado no contiene result ni identidad de evidencia: <temporal>\\evidencias-release\\data\\release\\missing-result.json\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 7,
+      "name": "reject-missing-operation-id",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 49,
+        "stderr": "sabiparche github: falta el dato obligatorio: release.certificate.operation_id\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 8,
+      "name": "reject-wrong-result-type",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 76,
+        "stderr": "sabiparche github: dato no valido en release.certificate.result: debe ser una cadena no vacia\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 9,
+      "name": "accept-minimal-valid",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 88,
+        "stderr": "",
+        "exit_code": 0,
+        "observed_accept": true,
+        "expected_accept": true
+      }
+    },
+    {
+      "number": 10,
+      "name": "accept-extra-field",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "file_size": 106,
+        "stderr": "",
+        "exit_code": 0,
+        "observed_accept": true,
+        "expected_accept": true
+      }
+    }
+  ]
+}
