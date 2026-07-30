@@ -1,0 +1,107 @@
+{
+  "created_at": "2026-07-30T15:33:48.948337900Z",
+  "evidence": {
+    "branches": [
+      {
+        "created": true,
+        "from": "main",
+        "name": "prueba/publicacion-nueva-ancla",
+        "remote_commit": "c62004d6ab30436f23f9fc7757bbb5233a8585ce"
+      },
+      {
+        "created": true,
+        "from": "main",
+        "name": "prueba/manipulacion-lineage",
+        "remote_commit": "c62004d6ab30436f23f9fc7757bbb5233a8585ce"
+      },
+      {
+        "created": true,
+        "from": "main",
+        "name": "prueba/reanudacion-interrumpida",
+        "remote_commit": "c62004d6ab30436f23f9fc7757bbb5233a8585ce"
+      },
+      {
+        "created": true,
+        "from": "main",
+        "name": "prueba/identidad-cruzada",
+        "remote_commit": "c62004d6ab30436f23f9fc7757bbb5233a8585ce"
+      },
+      {
+        "created": true,
+        "from": "main",
+        "name": "prueba/cambios-proyecto-real",
+        "remote_commit": "c62004d6ab30436f23f9fc7757bbb5233a8585ce"
+      }
+    ],
+    "files": [
+      {
+        "created": false,
+        "path": "README.md",
+        "sha256": "5f4d576dba163954dee6247edd1862785e5a8a631e6575e5220b8bddd2a95048",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": "Cargo.toml",
+        "sha256": "fc34ade87605f679f0c199d82c9734df36c8ff824c1d5128fcaa7647eee1d10f",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": "src\\main.rs",
+        "sha256": "f6ea5da6a2292d3bef25acbb4f7c27e0382613bab50845fc9db0e433ee2f3164",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": "tests\\ejecucion.rs",
+        "sha256": "a6a19e6a9b6385f0ac94eeef935e51ae5c76bd96ff8e77b13a60a3fd645ec322",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": ".github\\workflows\\pruebas.yml",
+        "sha256": "21c83b50b866e2f0e90e616422815d98ccc9ae7ab6b91a338b693046480b2a7a",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": "docs\\PLAN-DE-PRUEBAS.md",
+        "sha256": "68964ea42741b4367d71e1f01708190b19f112e801754b90bc23f73f9b5b2fe3",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": "casos\\control.json",
+        "sha256": "c225dae8853e5dc9f7dce3859b3473d1073bdf1af4acd5af816a0b85ac83571f",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": ".gitignore",
+        "sha256": "4e88534fc65f46604889d9b59e08758a870bebfeaf71241f1ae34a2373e0d635",
+        "unchanged": true
+      },
+      {
+        "created": false,
+        "path": "resultados\\.gitkeep",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      }
+    ],
+    "head_commit": "c62004d6ab30436f23f9fc7757bbb5233a8585ce",
+    "operation_id": "f7e60708-46f2-4eba-aecc-1d2fdcdce4b4",
+    "repository": {
+      "host": "github.com",
+      "owner": "K3iSoft",
+      "repository": "Sabiparche-Pruebas"
+    },
+    "repository_id": 1317407774,
+    "schema": 1
+  },
+  "evidence_hash": "cef56cbd13f4fc9bdca3b088d51e3c1fdcd92e081aee5c1ba5419dae8b95d898",
+  "operation_id": "f7e60708-46f2-4eba-aecc-1d2fdcdce4b4",
+  "schema": 1,
+  "spec_path": "C:\\Users\\T-1000\\Desktop\\sabiparshe\\bootstrap-sabiparche-pruebas-publicas.toml",
+  "terminal": true
+}
