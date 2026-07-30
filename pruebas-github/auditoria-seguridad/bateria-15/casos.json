@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "area": "security",
+  "total_cases": 15,
+  "cases": [
+    {
+      "number": 1,
+      "name": "known-safe-file",
+      "type": "positive",
+      "expected": "Acepta un archivo limpio."
+    },
+    {
+      "number": 2,
+      "name": "single-github-token",
+      "type": "negative",
+      "expected": "Detecta y redacta un token GitHub."
+    },
+    {
+      "number": 3,
+      "name": "multiple-github-tokens",
+      "type": "negative",
+      "expected": "Informa de dos secretos distintos."
+    },
+    {
+      "number": 4,
+      "name": "prefix-without-token",
+      "type": "positive",
+      "expected": "No marca un prefijo aislado."
+    },
+    {
+      "number": 5,
+      "name": "split-token-lines",
+      "type": "behavior",
+      "expected": "No concatena lineas arbitrariamente."
+    },
+    {
+      "number": 6,
+      "name": "token-inside-comment",
+      "type": "negative",
+      "expected": "Detecta secretos en comentarios."
+    },
+    {
+      "number": 7,
+      "name": "token-inside-json",
+      "type": "negative",
+      "expected": "Detecta secretos en JSON."
+    },
+    {
+      "number": 8,
+      "name": "empty-file",
+      "type": "positive",
+      "expected": "No produce falsos positivos en archivo vacio."
+    },
+    {
+      "number": 9,
+      "name": "missing-input-file",
+      "type": "negative",
+      "expected": "Rechaza una ruta inexistente."
+    },
+    {
+      "number": 10,
+      "name": "unsafe-workflow",
+      "type": "negative",
+      "expected": "Detecta permisos globales, Action mutable y pull_request_target."
+    },
+    {
+      "number": 11,
+      "name": "safe-workflow",
+      "type": "positive",
+      "expected": "Acepta un workflow con permisos minimos."
+    },
+    {
+      "number": 12,
+      "name": "deterministic-finding-hash",
+      "type": "determinism",
+      "expected": "Produce el mismo hash para el mismo hallazgo."
+    },
+    {
+      "number": 13,
+      "name": "duplicate-input-path",
+      "type": "consistency",
+      "expected": "No duplica hallazgos por una ruta repetida."
+    },
+    {
+      "number": 14,
+      "name": "large-safe-text",
+      "type": "robustness",
+      "expected": "Procesa texto grande sin falsos positivos."
+    },
+    {
+      "number": 15,
+      "name": "unicode-lookalike-prefix",
+      "type": "positive",
+      "expected": "No confunde un caracter Unicode parecido con h."
+    }
+  ]
+}

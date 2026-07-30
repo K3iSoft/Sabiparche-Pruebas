@@ -1,0 +1,311 @@
+{
+  "schema": 2,
+  "generated_at": "2026-07-30T21:42:34.9382242Z",
+  "branch": "prueba/github-auditoria-seguridad",
+  "area": "security",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-branch-empirical-adversarial",
+  "classification": "PASS_EMPIRICAL",
+  "passed": true,
+  "fully_closed": true,
+  "total_tests": 15,
+  "passed_tests": 15,
+  "failed_tests": 0,
+  "failed_test_names": [],
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "known-safe-file",
+      "type": "positive",
+      "expected": "Acepta un archivo limpio.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 2,
+      "name": "single-github-token",
+      "type": "negative",
+      "expected": "Detecta y redacta un token GitHub.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [
+          {
+            "path": "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\token.rs",
+            "line": 1,
+            "detector": "github-token",
+            "redacted_preview": "ghp…<redacted:github-token>",
+            "evidence_hash": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf"
+          }
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 3,
+      "name": "multiple-github-tokens",
+      "type": "negative",
+      "expected": "Informa de dos secretos distintos.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [
+          {
+            "path": "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\tokens.rs",
+            "line": 1,
+            "detector": "github-token",
+            "redacted_preview": "ghp…<redacted:github-token>",
+            "evidence_hash": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf"
+          },
+          {
+            "path": "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\tokens.rs",
+            "line": 2,
+            "detector": "github-token",
+            "redacted_preview": "ghp…<redacted:github-token>",
+            "evidence_hash": "d266e629faf4c33a5dde0da57b5607c86a1ca0784b1c98a0a3c36eb53872d5de"
+          }
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 4,
+      "name": "prefix-without-token",
+      "type": "positive",
+      "expected": "No marca un prefijo aislado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 5,
+      "name": "split-token-lines",
+      "type": "behavior",
+      "expected": "No concatena lineas arbitrariamente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 6,
+      "name": "token-inside-comment",
+      "type": "negative",
+      "expected": "Detecta secretos en comentarios.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [
+          {
+            "path": "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\comment-token.rs",
+            "line": 1,
+            "detector": "github-token",
+            "redacted_preview": "ghp…<redacted:github-token>",
+            "evidence_hash": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf"
+          }
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 7,
+      "name": "token-inside-json",
+      "type": "negative",
+      "expected": "Detecta secretos en JSON.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [
+          {
+            "path": "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\token.json",
+            "line": 1,
+            "detector": "github-token",
+            "redacted_preview": "ghp…<redacted:github-token>",
+            "evidence_hash": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf"
+          }
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 8,
+      "name": "empty-file",
+      "type": "positive",
+      "expected": "No produce falsos positivos en archivo vacio.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 9,
+      "name": "missing-input-file",
+      "type": "negative",
+      "expected": "Rechaza una ruta inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: la ruta no existe: C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\missing.txt\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 10,
+      "name": "unsafe-workflow",
+      "type": "negative",
+      "expected": "Detecta permisos globales, Action mutable y pull_request_target.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "audits": [
+          [
+            "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\unsafe.yml",
+            {
+              "accepted": false,
+              "events": [
+                "pull_request_target"
+              ],
+              "external_actions": [
+                "actions/checkout@main"
+              ],
+              "findings": [
+                {
+                  "code": "GLOBAL_WRITE_PERMISSION",
+                  "severity": "error",
+                  "line": 4,
+                  "message": "el workflow concede escritura global"
+                },
+                {
+                  "code": "UNPINNED_ACTION",
+                  "severity": "error",
+                  "line": 9,
+                  "message": "Action externa no fijada por SHA completo: actions/checkout@main"
+                },
+                {
+                  "code": "MERGE_GROUP_MISSING",
+                  "severity": "error",
+                  "line": null,
+                  "message": "falta el evento merge_group requerido para la cola de integración"
+                },
+                {
+                  "code": "PULL_REQUEST_TARGET_FORBIDDEN",
+                  "severity": "error",
+                  "line": null,
+                  "message": "pull_request_target no puede ejecutar código del contribuidor"
+                },
+                {
+                  "code": "FULL_HISTORY_MISSING",
+                  "severity": "error",
+                  "line": null,
+                  "message": "checkout debe usar fetch-depth: 0 para verificar bases y linaje"
+                }
+              ],
+              "evidence_hash": "57757448ff39f0c73d68cd0b9571095d5e62cde414f8c1414829c9967eed693d"
+            }
+          ]
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 11,
+      "name": "safe-workflow",
+      "type": "positive",
+      "expected": "Acepta un workflow con permisos minimos.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0,
+        "audits": [
+          [
+            "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\safe.yml",
+            {
+              "accepted": true,
+              "events": [
+                "merge_group",
+                "pull_request"
+              ],
+              "external_actions": [
+                "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683"
+              ],
+              "findings": [],
+              "evidence_hash": "7dfe26add5aa24f1328d4b2f43971d46c837545078179eae4db752543867ccd2"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "number": 12,
+      "name": "deterministic-finding-hash",
+      "type": "determinism",
+      "expected": "Produce el mismo hash para el mismo hallazgo.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "hash_2": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf",
+        "hash_1": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf"
+      }
+    },
+    {
+      "number": 13,
+      "name": "duplicate-input-path",
+      "type": "consistency",
+      "expected": "No duplica hallazgos por una ruta repetida.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [
+          {
+            "path": "C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-auditoria-seguridad\\token.rs",
+            "line": 1,
+            "detector": "github-token",
+            "redacted_preview": "ghp…<redacted:github-token>",
+            "evidence_hash": "35de4667e3b423a9321d871051f33b417ac38861f0a0b9473a73e2d6d9d12fdf"
+          }
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 14,
+      "name": "large-safe-text",
+      "type": "robustness",
+      "expected": "Procesa texto grande sin falsos positivos.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [],
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 15,
+      "name": "unicode-lookalike-prefix",
+      "type": "positive",
+      "expected": "No confunde un caracter Unicode parecido con h.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "findings": [],
+        "exit_code": 0
+      }
+    }
+  ]
+}
