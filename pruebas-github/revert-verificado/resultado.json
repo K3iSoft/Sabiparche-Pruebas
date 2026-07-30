@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:21:04.4891630Z",
+  "test": "github-revert-verificado",
+  "passed": true,
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-test-branch",
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "checks": {
+    "independently_observed_tree": "5b5f6e32d2c2280cf11aed13668e75d821e18de8",
+    "false_tree_exit_code": 70,
+    "correct_tree_exit_code": 0,
+    "false_tree_rejected": true,
+    "correct_tree_accepted": true
+  }
+}
