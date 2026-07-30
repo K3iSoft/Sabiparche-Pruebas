@@ -64,3 +64,41 @@ Sabiparche: proyecto público de pruebas operativo
 
 K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
 Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:INICIO -->
+
+# Auditoría empírica: validación encapsulada incorrectamente
+
+## Objetivo
+
+Comprobar la protección frente a una cabeza remota modificada durante la validación.
+
+## Comando de Sabiparche ensayado
+
+```powershell
+sabiparche github sync `
+    --root <clon-local> `
+    --base auditoria-real/revalidacion-20260730-202821 `
+    --validate 'cmd /c "ping -n 16 127.0.0.1 >nul"'
+```
+
+## Problema de la prueba
+
+Las comillas fueron transmitidas literalmente. Windows intentó ejecutar toda la cadena entrecomillada como nombre de programa.
+
+## Comportamiento observado
+
+La validación terminó con error. Sabiparche rechazó la sincronización y verificó el rollback local.
+
+## Resultado
+
+No se alcanzó correctamente la fase necesaria para evaluar la carrera remota.
+
+## Estado
+
+**PRUEBA INVÁLIDA PARA REVALIDACIÓN REMOTA**
+
+Solo aporta evidencia del rechazo y rollback ante una validación fallida.
+
+<!-- SABIPARCHE-AUDITORIA:FIN -->
+
