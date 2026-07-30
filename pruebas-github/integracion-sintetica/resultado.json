@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:21:12.8762400Z",
+  "test": "github-integracion-sintetica",
+  "passed": true,
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-test-branch",
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "checks": {
+    "clean_integration_exit_code": 0,
+    "clean_integration_accepted": true,
+    "conflicting_integration_exit_code": 70,
+    "conflict_rejected": true
+  }
+}
