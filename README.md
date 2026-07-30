@@ -64,3 +64,47 @@ Sabiparche: proyecto público de pruebas operativo
 
 K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
 Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:INICIO -->
+
+# Auditoría empírica: validación fallida y rollback
+
+## Objetivo
+
+Mantener abierta la fase de validación mientras otro actor avanzaba la rama remota.
+
+## Comando de Sabiparche ensayado
+
+```powershell
+sabiparche github sync `
+    --root <clon-local> `
+    --base auditoria-real/sync-valida-20260730-202536 `
+    --validate "ping -n 16 127.0.0.1"
+```
+
+## Problema de la prueba
+
+Los argumentos de `ping` no llegaron correctamente al proceso. Windows mostró la ayuda del programa y devolvió un estado de error.
+
+## Validación
+
+Sabiparche consideró fallida la afirmación porque el comando de validación terminó con un código distinto de cero.
+
+## Integración transaccional
+
+La integración provisional no fue confirmada.
+
+## Rollback
+
+Sabiparche informó que el rollback local había sido verificado.
+
+## Resultado
+
+Se comprobó el rechazo ante una validación fallida, pero no la carrera remota que constituía el objetivo principal.
+
+## Estado
+
+**PRUEBA PARCIAL: RECHAZO Y ROLLBACK CONFIRMADOS**
+
+<!-- SABIPARCHE-AUDITORIA:FIN -->
+
