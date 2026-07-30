@@ -67,21 +67,13 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría empírica: concurrencia de GitHub
+# Dos actores intentando actualizar la misma rama
 
-## Objetivo
+Esta rama conserva una prueba sencilla de concurrencia realizada directamente con Git y GitHub.
 
-Comprobar cómo responde GitHub cuando dos actores intentan actualizar una rama partiendo de la misma cabeza.
+## Qué se hizo
 
-## Escenario ejecutado
-
-1. Se prepararon dos clones independientes.
-2. Cada clon creó una mutación distinta.
-3. El primer actor publicó su commit.
-4. El segundo actor intentó publicar un commit basado en la cabeza anterior.
-5. Se comprobó la cabeza final de la rama remota.
-
-## Operaciones ejecutadas
+Se prepararon dos clones desde la misma cabeza. Cada uno creó un commit diferente y ambos intentaron publicarlo en la misma rama temporal.
 
 ```powershell
 git clone <repositorio-github> <clon-a>
@@ -91,25 +83,17 @@ git -C <clon-a> push origin HEAD:<rama-temporal>
 git -C <clon-b> push origin HEAD:<rama-temporal>
 ```
 
-## Mutación
+## Qué ocurrió
 
-Cada commit representa una transformación distinta del mismo estado inicial.
+El primer push fue aceptado. El segundo quedó basado en una cabeza que ya no era la vigente y GitHub lo rechazó.
 
-## Concurrencia
+Los dos commits pueden entenderse como mutaciones distintas producidas desde el mismo estado inicial.
 
-Los dos actores trabajaron desde una base común. Después del primer push, el segundo commit quedó basado en una cabeza obsoleta.
+## Conclusión
 
-## Resultado
+GitHub conservó el commit aceptado y no permitió que el segundo actor sobrescribiera la rama con una actualización obsoleta.
 
-GitHub aceptó el primer commit y rechazó el segundo push. La rama remota permaneció en el commit aceptado.
-
-## Alcance
-
-Esta rama prueba Git y GitHub. No atribuye el rechazo directamente a Sabiparche.
-
-## Estado
-
-**PRUEBA EMPÍRICA SUPERADA: GIT Y GITHUB**
+Esta prueba describe el comportamiento de Git y GitHub. No evalúa por sí sola una operación de Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
