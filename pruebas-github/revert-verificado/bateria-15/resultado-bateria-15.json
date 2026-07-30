@@ -1,0 +1,204 @@
+{
+  "schema": 2,
+  "generated_at": "2026-07-30T21:42:14.9362019Z",
+  "branch": "prueba/github-revert-verificado",
+  "area": "revert",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-branch-empirical-adversarial",
+  "classification": "POSSIBLE_GAPS_OR_BUGS",
+  "passed": false,
+  "fully_closed": false,
+  "total_tests": 15,
+  "passed_tests": 14,
+  "failed_tests": 1,
+  "failed_test_names": [
+    "uppercase-tree-hash"
+  ],
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "valid-revert",
+      "type": "positive",
+      "expected": "Acepta un arbol restaurado correcto.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 2,
+      "name": "fake-expected-tree",
+      "type": "negative",
+      "expected": "Rechaza un arbol esperado falso.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash distinto en revert.expected_restored_tree: esperado 0000000000000000000000000000000000000000, observado 5b5f6e32d2c2280cf11aed13668e75d821e18de8\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 3,
+      "name": "invalid-base-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA base malformado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash no valido en revert.base_commit: no-es-un-sha\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 4,
+      "name": "invalid-target-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA objetivo malformado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash no valido en revert.target_commit: no-es-un-sha\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 5,
+      "name": "missing-target-commit",
+      "type": "negative",
+      "expected": "Rechaza commit inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: el comando fallo: git -C C:\\Users\\T-1000\\AppData\\Local\\Temp\\.tmp6QjYJK\\revert-worktree revert --no-commit aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\nstatus: Some(128)\r\nstdout: \r\nstderr: fatal: bad object aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 6,
+      "name": "missing-repository",
+      "type": "negative",
+      "expected": "Rechaza una ruta que no es repositorio Git.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en revert.repository_root: no es un repositorio Git\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 7,
+      "name": "missing-verification-document",
+      "type": "negative",
+      "expected": "Rechaza documento inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en revert.verification_document: no existe C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-revert-verificado\\missing.toml\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 8,
+      "name": "empty-operation-id",
+      "type": "negative",
+      "expected": "Rechaza operation_id vacio.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en revert.operation_id: debe ser no vacio y no tener espacios exteriores\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 9,
+      "name": "empty-repository-name",
+      "type": "negative",
+      "expected": "Rechaza nombre de repositorio vacio.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en revert.repository: debe ser no vacio y no tener espacios exteriores\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 10,
+      "name": "deterministic-evidence",
+      "type": "determinism",
+      "expected": "Produce el mismo evidence_hash.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "hash_2": "f2cb65f80bcb7829e7689f24ffdf0e0c54fe1f056d73ad24835378b7dc0a1d7c",
+        "hash_1": "f2cb65f80bcb7829e7689f24ffdf0e0c54fe1f056d73ad24835378b7dc0a1d7c"
+      }
+    },
+    {
+      "number": 11,
+      "name": "dirty-repository-isolated",
+      "type": "isolation",
+      "expected": "Un archivo no rastreado no altera el resultado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 12,
+      "name": "root-commit-revert",
+      "type": "negative",
+      "expected": "Rechaza o trata explicitamente el commit raiz.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash distinto en revert.expected_restored_tree: esperado 5b5f6e32d2c2280cf11aed13668e75d821e18de8, observado 4b825dc642cb6eb9a060e54bf8d69288fbee4904\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 13,
+      "name": "uppercase-tree-hash",
+      "type": "compatibility",
+      "expected": "Normaliza hash hexadecimal en mayusculas.",
+      "passed": false,
+      "classification": "POSSIBLE_GAP_OR_BUG",
+      "evidence": {
+        "stderr": "sabiparche github: hash distinto en revert.expected_restored_tree: esperado 5B5F6E32D2C2280CF11AED13668E75D821E18DE8, observado 5b5f6e32d2c2280cf11aed13668e75d821e18de8\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 14,
+      "name": "oversized-tree-hash",
+      "type": "negative",
+      "expected": "Rechaza longitud de hash invalida.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash distinto en revert.expected_restored_tree: esperado 5b5f6e32d2c2280cf11aed13668e75d821e18de800, observado 5b5f6e32d2c2280cf11aed13668e75d821e18de8\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 15,
+      "name": "source-repository-unchanged",
+      "type": "isolation",
+      "expected": "No modifica el checkout fuente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "status_after": "",
+        "exit_code": 0,
+        "status_before": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Esta bateria se ejecuto con la rama activa:
+
+prueba/github-revert-verificado
+
+Los estados Git auxiliares se construyeron de forma aislada durante la ejecucion.
+Los casos definidos se conservan en casos.json.
+La evidencia sanitizada se conserva en resultado-bateria-15.json.
+
+No se modifico main.
+No se edito README.md.
+No se publico ningun secreto real.

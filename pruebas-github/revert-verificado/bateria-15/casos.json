@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "area": "revert",
+  "total_cases": 15,
+  "cases": [
+    {
+      "number": 1,
+      "name": "valid-revert",
+      "type": "positive",
+      "expected": "Acepta un arbol restaurado correcto."
+    },
+    {
+      "number": 2,
+      "name": "fake-expected-tree",
+      "type": "negative",
+      "expected": "Rechaza un arbol esperado falso."
+    },
+    {
+      "number": 3,
+      "name": "invalid-base-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA base malformado."
+    },
+    {
+      "number": 4,
+      "name": "invalid-target-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA objetivo malformado."
+    },
+    {
+      "number": 5,
+      "name": "missing-target-commit",
+      "type": "negative",
+      "expected": "Rechaza commit inexistente."
+    },
+    {
+      "number": 6,
+      "name": "missing-repository",
+      "type": "negative",
+      "expected": "Rechaza una ruta que no es repositorio Git."
+    },
+    {
+      "number": 7,
+      "name": "missing-verification-document",
+      "type": "negative",
+      "expected": "Rechaza documento inexistente."
+    },
+    {
+      "number": 8,
+      "name": "empty-operation-id",
+      "type": "negative",
+      "expected": "Rechaza operation_id vacio."
+    },
+    {
+      "number": 9,
+      "name": "empty-repository-name",
+      "type": "negative",
+      "expected": "Rechaza nombre de repositorio vacio."
+    },
+    {
+      "number": 10,
+      "name": "deterministic-evidence",
+      "type": "determinism",
+      "expected": "Produce el mismo evidence_hash."
+    },
+    {
+      "number": 11,
+      "name": "dirty-repository-isolated",
+      "type": "isolation",
+      "expected": "Un archivo no rastreado no altera el resultado."
+    },
+    {
+      "number": 12,
+      "name": "root-commit-revert",
+      "type": "negative",
+      "expected": "Rechaza o trata explicitamente el commit raiz."
+    },
+    {
+      "number": 13,
+      "name": "uppercase-tree-hash",
+      "type": "compatibility",
+      "expected": "Normaliza hash hexadecimal en mayusculas."
+    },
+    {
+      "number": 14,
+      "name": "oversized-tree-hash",
+      "type": "negative",
+      "expected": "Rechaza longitud de hash invalida."
+    },
+    {
+      "number": 15,
+      "name": "source-repository-unchanged",
+      "type": "isolation",
+      "expected": "No modifica el checkout fuente."
+    }
+  ]
+}
