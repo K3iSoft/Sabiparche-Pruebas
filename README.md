@@ -1,66 +1,64 @@
-# Sabiparche Pruebas
+# Revert verificado
 
-Este es el repositorio oficial de K3iSoft para las pruebas públicas de Sabiparche.
+Comprueba que un revert restaura exactamente el arbol Git esperado.
 
-## Qué es Sabiparche
+Esta rama contiene una implementacion y su evidencia empirica. Los resultados describen lo que se probo realmente; no afirman que el sistema sea correcto para entradas que no fueron ejercitadas.
 
-Sabiparche es un sistema para aplicar, verificar y publicar cambios sobre proyectos de
-software con evidencia comprobable.
+## Comando
 
-Además de modificar archivos, Sabiparche puede:
-
-- crear o verificar repositorios;
-- crear carpetas, archivos, commits y ramas desde una especificación TOML;
-- publicar cambios en GitHub;
-- mantener journals autenticados;
-- comprobar commits, árboles, certificados y manifiestos;
-- detectar manipulaciones posteriores;
-- reanudar operaciones interrumpidas;
-- evitar duplicados mediante ejecución idempotente;
-- usar la GitHub App instalada sin pedir tokens personales.
-
-## Finalidad de este repositorio
-
-Este repositorio no contiene el código de producción de K3iSoft. Se usa como entorno
-público y reproducible para probar Sabiparche sobre un proyecto pequeño pero real.
-
-Aquí se comprueba que Sabiparche puede:
-
-1. crear o verificar un repositorio público;
-2. generar un proyecto Rust funcional;
-3. crear archivos y carpetas;
-4. crear y publicar ramas;
-5. repetir la operación sin duplicar recursos;
-6. producir journals y hashes de evidencia;
-7. autenticar mediante la GitHub App ya instalada.
-
-## Proyecto de ejemplo
-
-El proyecto incluido es una aplicación Rust mínima llamada `saludo-sabiparche`.
-
-Comprobación local:
-
-```text
-cargo check
-cargo test
-cargo run
+```powershell
+sabiparche github integration-revert-plan .\entrada-revert.json
 ```
 
-Salida esperada:
+El comando usa el binario instalado sabiparche. Los detalles de compilacion pertenecen al desarrollo interno y no forman parte del uso publico.
 
-```text
-Sabiparche: proyecto público de pruebas operativo
+## Ejemplo de entrada
+
+```json
+{
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "repository_root": ".",
+  "operation_id": "revert-verificado",
+  "base_commit": "COMMIT_BASE",
+  "target_commit": "COMMIT_OBJETIVO",
+  "expected_restored_tree": "HASH_DEL_ARBOL_ESPERADO",
+  "verification_document": ".\verificacion.toml"
+}
 ```
 
-## Ramas de prueba
+Sustituye los valores de ejemplo por rutas y commits reales del repositorio que quieras verificar.
 
-- `prueba/publicacion-nueva-ancla`
-- `prueba/manipulacion-lineage`
-- `prueba/reanudacion-interrumpida`
-- `prueba/identidad-cruzada`
-- `prueba/cambios-proyecto-real`
+## Que comprueba
 
-## Titularidad
+- Verifica que los commits existan.
+- Calcula el arbol restaurado con Git.
+- Acepta hashes equivalentes en mayusculas, minusculas o mezcla.
+- Rechaza espacios exteriores, caracteres no hexadecimales y arboles distintos.
 
-K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
-Sabiparche.
+## Historial de pruebas
+
+- 15 pruebas iniciales: 14 correctas y 1 problema de normalizacion hexadecimal.
+- La comparacion de hashes ahora ignora mayusculas y minusculas sin aceptar espacios ni valores invalidos.
+- 5 repruebas posteriores: 5 correctas.
+
+La evidencia detallada se conserva dentro de pruebas-github/ en esta misma rama. Las pruebas posteriores no borran los resultados anteriores: quedan en el historial para mostrar el descubrimiento, la correccion y la reprueba.
+
+## Interpretacion del resultado
+
+Un resultado aceptado significa que la entrada cumplio las comprobaciones implementadas para esta integracion. Un rechazo devuelve un codigo distinto de cero y un mensaje que identifica el dato invalido o la evidencia insuficiente.
+
+## Limites
+
+- Las pruebas cubren los casos publicados en esta rama.
+- No sustituyen una auditoria completa de GitHub, Git ni del repositorio objetivo.
+- Las rutas y credenciales reales no deben incluirse en evidencias publicas.
+- No se deben publicar tokens, claves ni datos locales innecesarios.
+
+## Estructura de evidencia
+
+```text
+pruebas-github/
+  resultados iniciales
+  bateria-15/
+  repruebas posteriores, cuando corresponda
+```
