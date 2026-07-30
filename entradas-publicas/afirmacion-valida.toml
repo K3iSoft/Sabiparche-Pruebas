@@ -1,0 +1,31 @@
+schema = 1
+name = "auditoria-github-total"
+
+[subject]
+patch = "parche-no-necesario-para-compilar.toml"
+
+[[claims]]
+id = "cierra-fallo-antiguo"
+kind = "closes_failure"
+fingerprint = "AUDIT-OLD-001"
+
+[[claims]]
+id = "preserva-familia"
+kind = "preserves_family"
+family = "auditoria-github"
+
+[[claims]]
+id = "prohibe-fallback"
+kind = "forbids_patch"
+patch = "fallback-inseguro"
+
+[[claims]]
+id = "rollback-exacto"
+kind = "reversible_exact"
+
+[[claims]]
+id = "evidencia-independiente"
+kind = "evidence_discriminating"
+family = "auditoria-github"
+subject_patch = "cambio-principal"
+

@@ -1,0 +1,9 @@
+schema = 1
+name = "id-invalido"
+[subject]
+patch = "x.toml"
+[[claims]]
+id = "id con espacios"
+kind = "closes_failure"
+fingerprint = "AUDIT-001"
+

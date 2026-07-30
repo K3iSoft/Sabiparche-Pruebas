@@ -1,0 +1,423 @@
+{
+  "schema": 1,
+  "visibility": "public-black-box",
+  "generated_at": "2026-07-30T18:49:32.2612568+02:00",
+  "run_id": "20260730-184859-3fedbad6",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "method": "pruebas de caja negra sobre proyectos, parches y efectos GitHub observables",
+  "disclosure": {
+    "includes": [
+      "entradas públicas",
+      "código del proyecto de prueba",
+      "resultados observados",
+      "hashes y commits públicos",
+      "efectos aceptados y rechazados"
+    ],
+    "excludes": [
+      "código fuente de Sabiparche",
+      "rutas internas",
+      "nombres de funciones internas",
+      "backtraces",
+      "algoritmos privados",
+      "diferencias de arreglos internos"
+    ]
+  },
+  "counts": {
+    "pass": 36,
+    "blocked": 6,
+    "fail": 0,
+    "total": 42
+  },
+  "main_remote": {
+    "before": "665b22ff90daa11a163a8d99650a57a81a4de045",
+    "after_negative_tests": "665b22ff90daa11a163a8d99650a57a81a4de045",
+    "unchanged_by_negative_tests": true
+  },
+  "public_project": {
+    "cargo_toml_sha256": "fc34ade87605f679f0c199d82c9734df36c8ff824c1d5128fcaa7647eee1d10f",
+    "main_rs_sha256": "f6ea5da6a2292d3bef25acbb4f7c27e0382613bab50845fc9db0e433ee2f3164",
+    "execution_test_sha256": "ace6395d1c59c78cc166729b1b3ac64aea6bc776b7fb6d37fd3179543db986f9",
+    "observed_output": "Sabiparche: proyecto público de pruebas operativo"
+  },
+  "cases": [
+    {
+      "id": "001-version",
+      "area": "cli",
+      "prueba": "Versión del binario",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "002-help",
+      "area": "cli",
+      "prueba": "Ayuda principal",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "003-github-help",
+      "area": "github-cli",
+      "prueba": "Ayuda GitHub",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "004-doctor",
+      "area": "github-cli",
+      "prueba": "Diagnóstico de capacidades locales",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "005-catalog",
+      "area": "github-cli",
+      "prueba": "Catálogo de capacidades GitHub",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "010-offline-init",
+      "area": "github-offline",
+      "prueba": "Inicialización backend GitHub offline",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "011-offline-status",
+      "area": "github-offline",
+      "prueba": "Lectura persistente de estado offline",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "012-offline-self-test",
+      "area": "github-offline",
+      "prueba": "Contratos offline completos",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "013-offline-dispatch-first",
+      "area": "github-offline",
+      "prueba": "Dispatch offline inicial",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "014-offline-dispatch-idempotent",
+      "area": "github-offline",
+      "prueba": "Dispatch offline repetido e idempotente",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "020-claim-compile",
+      "area": "afirmaciones",
+      "prueba": "Compilación determinista de cinco afirmaciones",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "021-claim-verify",
+      "area": "afirmaciones",
+      "prueba": "Verificación criptográfica del plan compilado",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "022-claim-tamper-rejected",
+      "area": "afirmaciones-negativas",
+      "prueba": "Rechazo de plan con hash manipulado",
+      "estado": "PASS",
+      "fallo_esperado": true,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "no se autorizó ningún efecto remoto"
+    },
+    {
+      "id": "023-claim-duplicate-rejected",
+      "area": "afirmaciones-negativas",
+      "prueba": "Rechazo de identificadores duplicados",
+      "estado": "PASS",
+      "fallo_esperado": true,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "no se autorizó ningún efecto remoto"
+    },
+    {
+      "id": "024-claim-invalid-id-rejected",
+      "area": "afirmaciones-negativas",
+      "prueba": "Rechazo de identificador inválido",
+      "estado": "PASS",
+      "fallo_esperado": true,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "no se autorizó ningún efecto remoto"
+    },
+    {
+      "id": "030-mutacion-oraculos",
+      "area": "motor-empirico",
+      "prueba": "Oráculos, same_error y mutaciones inversas",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "031-minimos-alternativos",
+      "area": "motor-empirico",
+      "prueba": "Mínimos alternativos y agotamiento de presupuesto",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "032-dependencias-causales",
+      "area": "motor-empirico",
+      "prueba": "Dependencias requeridas y sobredeclaradas",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "033-obligaciones-causales",
+      "area": "motor-empirico",
+      "prueba": "Clasificación causal, regresión e invariantes",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "034-limpieza-afirmaciones",
+      "area": "motor-empirico",
+      "prueba": "Dominancia lógica y cierre de fallos",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "035-memoria-fallos",
+      "area": "motor-empirico",
+      "prueba": "Nacimiento, reaparición y manipulación de memoria",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "036-transaccion-remota",
+      "area": "motor-empirico",
+      "prueba": "Rollback exacto tras push rechazado",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "037-seguridad-workflows",
+      "area": "motor-empirico",
+      "prueba": "Rechazo de GitHub Actions mutables",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "038-identidad-remota",
+      "area": "motor-empirico",
+      "prueba": "Rechazo de cambio de identidad remota",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "040-bootstrap-first",
+      "area": "github-real",
+      "prueba": "Bootstrap real sobre repositorio público",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "041-bootstrap-second",
+      "area": "github-real",
+      "prueba": "Segundo bootstrap idempotente",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "042-github-config",
+      "area": "github-real",
+      "prueba": "Identidad y configuración remota verificadas",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "043-project-fmt",
+      "area": "proyecto-publico",
+      "prueba": "Formato del proyecto público",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "044-project-check",
+      "area": "proyecto-publico",
+      "prueba": "Compilación del proyecto público",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "045-project-test",
+      "area": "proyecto-publico",
+      "prueba": "Tests del proyecto público",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "046-project-run",
+      "area": "proyecto-publico",
+      "prueba": "Ejecución observable del proyecto público",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "050-api-repository",
+      "area": "github-observacion",
+      "prueba": "Metadatos públicos independientes",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "051-api-branches",
+      "area": "github-observacion",
+      "prueba": "Ramas visibles por API pública",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "052-api-commits",
+      "area": "github-observacion",
+      "prueba": "Timeline de commits observable",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "053-api-actions",
+      "area": "github-observacion",
+      "prueba": "Ejecuciones GitHub Actions observables",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "060-negative-no-remote-effect",
+      "area": "ausencia-efectos",
+      "prueba": "Las pruebas negativas locales no alteran main remoto",
+      "estado": "PASS",
+      "fallo_esperado": false,
+      "observacion": "comportamiento observado y conforme",
+      "efecto_remoto": "main remoto permaneció sin cambios"
+    },
+    {
+      "id": "090-gap-9a44a6",
+      "area": "huecos-declarados",
+      "prueba": "Webhook real firmado desde infraestructura externa",
+      "estado": "BLOCKED",
+      "fallo_esperado": false,
+      "observacion": "no ejecutado por falta de condición externa",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "090-gap-dc12e4",
+      "area": "huecos-declarados",
+      "prueba": "Rate limit 429 provocado deliberadamente",
+      "estado": "BLOCKED",
+      "fallo_esperado": false,
+      "observacion": "no ejecutado por falta de condición externa",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "090-gap-810923",
+      "area": "huecos-declarados",
+      "prueba": "Fallo 5xx real de GitHub provocado deliberadamente",
+      "estado": "BLOCKED",
+      "fallo_esperado": false,
+      "observacion": "no ejecutado por falta de condición externa",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "090-gap-b52385",
+      "area": "huecos-declarados",
+      "prueba": "Ruleset de organización que requiera plan de pago concreto",
+      "estado": "BLOCKED",
+      "fallo_esperado": false,
+      "observacion": "no ejecutado por falta de condición externa",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "090-gap-6468b1",
+      "area": "huecos-declarados",
+      "prueba": "Merge queue real cuando el repositorio no la tenga habilitada",
+      "estado": "BLOCKED",
+      "fallo_esperado": false,
+      "observacion": "no ejecutado por falta de condición externa",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    },
+    {
+      "id": "090-gap-90221e",
+      "area": "huecos-declarados",
+      "prueba": "Ataque concurrente desde dos máquinas físicas independientes",
+      "estado": "BLOCKED",
+      "fallo_esperado": false,
+      "observacion": "no ejecutado por falta de condición externa",
+      "efecto_remoto": "consultar evidencia observable del caso"
+    }
+  ]
+}
+

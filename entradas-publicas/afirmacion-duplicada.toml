@@ -1,0 +1,11 @@
+schema = 1
+name = "duplicada"
+[subject]
+patch = "x.toml"
+[[claims]]
+id = "igual"
+kind = "reversible_exact"
+[[claims]]
+id = "igual"
+kind = "reversible_exact"
+

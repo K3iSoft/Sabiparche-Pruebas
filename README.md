@@ -1,66 +1,90 @@
-# Sabiparche Pruebas
+# Evidencia empírica de Sabiparche
 
-Este es el repositorio oficial de K3iSoft para las pruebas públicas de Sabiparche.
+Esta rama muestra cómo se comporta Sabiparche mediante pruebas de caja negra. Se publican las entradas de prueba, el código del proyecto de demostración, los resultados observados y los efectos visibles en GitHub. No se publica el código fuente de Sabiparche ni información suficiente para reconstruir su implementación interna.
 
-## Qué es Sabiparche
+## Qué se demuestra
 
-Sabiparche es un sistema para aplicar, verificar y publicar cambios sobre proyectos de
-software con evidencia comprobable.
+- Compilación y verificación de afirmaciones causales.
+- Rechazo de afirmaciones inválidas o manipuladas.
+- Pruebas de mutación, contrafactuales, oráculos y mínimos alternativos.
+- Aceptación de cambios que satisfacen las comprobaciones declaradas.
+- Rechazo de cambios incorrectos sin alterar main.
+- Idempotencia, rollback y ausencia de commits vacíos.
+- Observación independiente de ramas, commits y ejecuciones de GitHub Actions.
 
-Además de modificar archivos, Sabiparche puede:
+## Método público
 
-- crear o verificar repositorios;
-- crear carpetas, archivos, commits y ramas desde una especificación TOML;
-- publicar cambios en GitHub;
-- mantener journals autenticados;
-- comprobar commits, árboles, certificados y manifiestos;
-- detectar manipulaciones posteriores;
-- reanudar operaciones interrumpidas;
-- evitar duplicados mediante ejecución idempotente;
-- usar la GitHub App instalada sin pedir tokens personales.
+1. Se parte de código de demostración visible.
+2. Se entrega a Sabiparche una entrada o parche público.
+3. Se observan compilación, pruebas, mutaciones y efectos remotos.
+4. Se compara el commit de main antes y después de los casos negativos.
+5. Se publica únicamente el resultado funcional y verificable.
 
-## Finalidad de este repositorio
+## Resultado de esta ejecución
 
-Este repositorio no contiene el código de producción de K3iSoft. Se usa como entorno
-público y reproducible para probar Sabiparche sobre un proyecto pequeño pero real.
+- Run: $runId
+- PASS: $pass
+- FAIL: $fail
+- BLOCKED: $blocked
+- main antes de las pruebas negativas: $remoteHeadBefore
+- main después de las pruebas negativas: $remoteHeadAfterTests
+- main permaneció sin cambios: $negativeRemoteStable
 
-Aquí se comprueba que Sabiparche puede:
+## Código público observado
 
-1. crear o verificar un repositorio público;
-2. generar un proyecto Rust funcional;
-3. crear archivos y carpetas;
-4. crear y publicar ramas;
-5. repetir la operación sin duplicar recursos;
-6. producir journals y hashes de evidencia;
-7. autenticar mediante la GitHub App ya instalada.
+### src/main.rs
 
-## Proyecto de ejemplo
+`ust
+pub fn mensaje() -> &'static str {
+    "Sabiparche: proyecto público de pruebas operativo"
+}
 
-El proyecto incluido es una aplicación Rust mínima llamada `saludo-sabiparche`.
+fn main() {
+    println!("{}", mensaje());
+}
 
-Comprobación local:
+#[cfg(test)]
+mod tests {
+    use super::mensaje;
 
-```text
-cargo check
-cargo test
-cargo run
-```
+    #[test]
+    fn devuelve_el_mensaje_oficial() {
+        assert_eq!(
+            mensaje(),
+            "Sabiparche: proyecto público de pruebas operativo"
+        );
+    }
+}
 
-Salida esperada:
+`
 
-```text
-Sabiparche: proyecto público de pruebas operativo
-```
+### 	ests/ejecucion.rs
 
-## Ramas de prueba
+`ust
+use std::process::Command;
 
-- `prueba/publicacion-nueva-ancla`
-- `prueba/manipulacion-lineage`
-- `prueba/reanudacion-interrumpida`
-- `prueba/identidad-cruzada`
-- `prueba/cambios-proyecto-real`
+#[test]
+fn el_binario_se_ejecuta_y_muestra_el_mensaje() {
+    let executable = env!("CARGO_BIN_EXE_saludo-sabiparche");
 
-## Titularidad
+    let output = Command::new(executable)
+        .output()
+        .expect("el binario debe poder ejecutarse");
 
-K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
-Sabiparche.
+    assert!(output.status.success());
+
+    let stdout = String::from_utf8(output.stdout).expect("la salida debe ser UTF-8");
+
+    assert_eq!(
+        stdout.trim(),
+        "Sabiparche: proyecto público de pruebas operativo"
+    );
+}
+
+`
+
+## Qué no contiene esta rama
+
+No contiene fuentes de Sabiparche, nombres de funciones internas, trazas privadas, rutas del repositorio privado, algoritmos de decisión, ni parches usados para corregir el motor. Un FAIL describe el comportamiento externo observado, no la causa interna.
+
+El detalle estructurado está en informe-publico.json.
