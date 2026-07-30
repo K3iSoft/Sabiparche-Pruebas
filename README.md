@@ -67,15 +67,13 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Timeline público de la auditoría de Sabiparche
+# Notas públicas de la auditoría
 
-## Objetivo
+Esta rama sirve como punto de entrada para entender las pruebas realizadas con Sabiparche y GitHub.
 
-Mantener una referencia visible en GitHub sobre las pruebas empíricas sin publicar secretos, rutas locales ni salidas internas completas.
+No contiene secretos, rutas locales, diagnósticos completos ni certificados internos.
 
-## Comandos públicos documentados
-
-### Sincronización transaccional
+## Comando que sí se probó en esta auditoría
 
 ```powershell
 sabiparche github sync `
@@ -84,112 +82,50 @@ sabiparche github sync `
     --validate <orden-de-validacion>
 ```
 
-### Aplicación de afirmaciones
+El comando sincroniza un clon con una rama de GitHub, prepara la integración de forma aislada, ejecuta las validaciones declaradas y evita confirmar el resultado si la base remota deja de ser válida.
 
-```powershell
-sabiparche apply <archivo-de-afirmaciones>
-```
+## Mutaciones y afirmaciones
 
-Los parámetros concretos dependen del contrato declarado por el archivo de afirmaciones.
+En estas pruebas, una mutación es un cambio observable del repositorio: un archivo nuevo, un commit adicional o el avance de una rama por otro actor.
 
-## Qué representa una mutación
+Sabiparche trabaja con afirmaciones sobre estados concretos. Antes de aceptar una operación debe comprobar que esas condiciones siguen siendo ciertas.
 
-Una mutación es una modificación deliberada del estado del repositorio utilizada para comprobar si una afirmación sigue siendo válida.
+La compilación de afirmaciones consiste en transformar esas declaraciones y dependencias en un plan que pueda ejecutarse y verificarse. No debe confundirse únicamente con la compilación de código fuente.
 
-Puede materializarse mediante:
+## Validación y resultado transaccional
 
-- creación o modificación de archivos;
-- cambio de un commit remoto;
-- avance concurrente de una rama;
-- alteración de una condición que debía permanecer estable.
+Las órdenes pasadas mediante `--validate` se utilizan para comprobar la integración preparada.
 
-## Qué significa compilar afirmaciones
-
-Sabiparche interpreta las afirmaciones declaradas, determina sus dependencias y prepara una operación verificable.
-
-La compilación de afirmaciones no equivale únicamente a compilar código fuente. Consiste en convertir declaraciones y condiciones en un plan comprobable.
-
-## Validaciones
-
-Las validaciones son órdenes declaradas que deben terminar correctamente antes de que una integración pueda confirmarse.
-
-Ejemplo:
-
-```powershell
-sabiparche github sync `
-    --root <clon-local> `
-    --base <rama-remota> `
-    --validate <comprobacion-1> `
-    --validate <comprobacion-2>
-```
+Cuando una validación falla, o cuando la cabeza remota cambia durante la operación, la integración no debe confirmarse sobre el repositorio local definitivo.
 
 ## Certificados
 
-Un certificado conserva evidencia estructurada sobre lo que se observó y comprobó durante una operación.
+Sabiparche puede conservar evidencia estructurada de las condiciones observadas, las validaciones y el resultado. Los certificados y diagnósticos completos no se publican en esta rama.
 
-Puede incluir conceptos como:
+## Otros comandos de Sabiparche
 
-- base utilizada;
-- afirmaciones evaluadas;
-- validaciones ejecutadas;
-- resultado de la operación;
-- integridad o rollback verificados.
+Sabiparche también dispone de operaciones como `sabiparche apply`, relacionadas con la aplicación de afirmaciones declaradas.
 
-No se publican aquí los certificados completos ni sus salidas internas.
+Ese comando se menciona aquí únicamente como contexto general del proyecto. No fue el objeto de las pruebas conservadas en estas ramas.
 
-## Integración transaccional
+## Resultados que ya tienen evidencia
 
-Sabiparche prepara y valida los cambios antes de modificar el repositorio local definitivo.
+- GitHub rechaza un push directo basado en una cabeza obsoleta.
+- `github sync` funciona contra un repositorio real.
+- Una validación fallida provoca el rechazo de la operación.
+- Se observó la conservación del estado local ante fallos.
+- Sabiparche detecta que la cabeza remota ha cambiado.
+- Una integración construida sobre una base obsoleta no se confirma.
 
-Una operación no debe confirmarse cuando:
+## Escenarios que todavía faltan
 
-- falla una validación;
-- cambia la cabeza remota;
-- se incumple una condición declarada;
-- no puede verificarse la integridad del resultado.
+- Una respuesta HTTP 429 real de GitHub.
+- Un error HTTP 5xx real de GitHub.
+- La modificación de un ruleset durante una operación.
+- Una Merge Queue que produzca eventos `merge_group`.
+- Una entrega real de webhook desde GitHub.
 
-## Evidencia visible en GitHub
-
-El historial remoto permite observar:
-
-- creación de ramas temporales;
-- commits que representan mutaciones;
-- avances competidores;
-- pushes aceptados y rechazados;
-- secuencia temporal de los escenarios.
-
-## Evidencia no publicada
-
-No se incluyen:
-
-- rutas locales;
-- tokens;
-- secretos;
-- URL privadas;
-- stdout o stderr completos;
-- JSON internos;
-- detalles privados de implementación.
-
-## Resultados confirmados
-
-- GitHub rechaza un push basado en una cabeza obsoleta.
-- `sabiparche github sync` opera contra un repositorio real.
-- Sabiparche rechaza validaciones fallidas.
-- Sabiparche verifica rollback local ante fallos observados.
-- Sabiparche detecta cambios de cabeza remota durante una operación.
-- Sabiparche evita confirmar una integración basada en una cabeza obsoleta.
-
-## Pendiente de prueba empírica
-
-- HTTP 429 real de GitHub.
-- HTTP 5xx real de GitHub.
-- Cambio real de ruleset durante una operación.
-- Merge Queue y eventos `merge_group`.
-- Entrega real de webhook desde GitHub.
-
-## Estado
-
-**TIMELINE DE AUDITORÍA ACTIVO**
+El historial de ramas y commits permite seguir la parte remota de cada experimento. Las conclusiones sobre la respuesta de Sabiparche proceden de las observaciones locales realizadas durante esas ejecuciones.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
