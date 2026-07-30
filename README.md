@@ -67,13 +67,11 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría: primer intento de publicación documental
+# Primer intento de documentar la auditoría
 
-## Objetivo
+Esta rama se creó para reunir una explicación pública de las pruebas sin subir diagnósticos internos.
 
-Crear una rama dedicada a explicar públicamente las pruebas realizadas con GitHub.
-
-## Operaciones realizadas
+## Operaciones previstas
 
 ```powershell
 git switch -c auditoria-real/evidencias-github
@@ -82,21 +80,15 @@ git commit -m "auditoria: publica evidencias empiricas"
 git push origin auditoria-real/evidencias-github
 ```
 
+## Qué pasó
+
+El primer intento no produjo un commit documental distinto de la base. Por eso no podía considerarse una publicación completa, aunque el push no mostrara un error inmediato.
+
+La comprobación posterior exigió tres condiciones: un commit nuevo, una rama remota apuntando a ese commit y contenido documental presente en su árbol.
+
 ## Resultado
 
-El intento no generó un commit nuevo con las evidencias previstas.
-
-## Criterio de publicación
-
-Una publicación documental solo queda confirmada cuando:
-
-- existe un commit distinto de la base;
-- la rama remota apunta a ese commit;
-- el contenido documental está incluido en el árbol del commit.
-
-## Estado
-
-**INTENTO DE PUBLICACIÓN NO CONFIRMADO**
+Intento no confirmado. La rama se mantiene porque también forma parte del historial de la auditoría.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
