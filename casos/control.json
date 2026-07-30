@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "owner": "K3iSoft",
+  "repository": "Sabiparche-Pruebas",
+  "public": true,
+  "official_test_repository": true,
+  "production_repository": false,
+  "project": "saludo-sabiparche"
+}

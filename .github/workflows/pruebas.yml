@@ -1,0 +1,28 @@
+name: Proyecto público de pruebas
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Comprobar formato
+        run: cargo fmt --check
+
+      - name: Comprobar compilación
+        run: cargo check
+
+      - name: Ejecutar tests
+        run: cargo test

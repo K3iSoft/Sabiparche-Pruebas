@@ -1,0 +1,8 @@
+[package]
+name = "saludo-sabiparche"
+version = "0.1.0"
+edition = "2021"
+description = "Proyecto público mínimo para pruebas empíricas de Sabiparche"
+license = "MIT"
+
+[dependencies]
