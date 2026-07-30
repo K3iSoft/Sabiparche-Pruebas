@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:20:56.7444592Z",
+  "test": "github-workflow-causal",
+  "passed": true,
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-test-branch",
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "checks": {
+    "mutable_actions_forbidden": true,
+    "reported_hash_matches_file": true,
+    "pull_request_target_forbidden": true,
+    "workflow_created": true,
+    "audit_accepted": true,
+    "exit_code": 0
+  }
+}

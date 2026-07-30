@@ -1,0 +1,26 @@
+name: Sabiparche causal
+
+on:
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  causal-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout completo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Verificación causal
+        uses: K3iSoft/sabiparche-action@0123456789abcdef0123456789abcdef01234567
+        with:
+          patch: 'parche.toml'
+          mode: verify
