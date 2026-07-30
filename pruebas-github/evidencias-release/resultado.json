@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:21:19.0530744Z",
+  "test": "github-evidencias-release",
+  "passed": true,
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-test-branch",
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "checks": {
+    "valid_plan_exit_code": 0,
+    "certificate_hash_verified": true,
+    "duplicate_asset_exit_code": 70,
+    "duplicate_asset_name_rejected": true,
+    "manifest_hash_verified": true
+  }
+}
