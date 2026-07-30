@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T20:37:47.7197637+02:00",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "evidence_count": 0,
+  "files": [],
+  "confirmed": [
+    "github sync opera contra GitHub real",
+    "detecta que la cabeza remota cambia durante la operación",
+    "rechaza la sincronización y conserva el repositorio local",
+    "GitHub rechaza un push directo basado en una cabeza obsoleta"
+  ],
+  "pending": [
+    "HTTP 429 real",
+    "HTTP 5xx real",
+    "ruleset real",
+    "merge_group real",
+    "webhook real"
+  ]
+}
