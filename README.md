@@ -67,13 +67,11 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría empírica: validación encapsulada incorrectamente
+# Un comando auxiliar mal entrecomillado
 
-## Objetivo
+Este ensayo volvió a intentar mantener abierta la validación mientras otro actor modificaba GitHub.
 
-Comprobar la protección frente a una cabeza remota modificada durante la validación.
-
-## Comando de Sabiparche ensayado
+## Comando recibido por Sabiparche
 
 ```powershell
 sabiparche github sync `
@@ -82,23 +80,17 @@ sabiparche github sync `
     --validate 'cmd /c "ping -n 16 127.0.0.1 >nul"'
 ```
 
-## Problema de la prueba
+Las comillas llegaron literalmente a Windows. En lugar de ejecutar `ping`, el sistema intentó interpretar toda la cadena entrecomillada como el nombre de un programa.
 
-Las comillas fueron transmitidas literalmente. Windows intentó ejecutar toda la cadena entrecomillada como nombre de programa.
+## Lo que sí se observó
 
-## Comportamiento observado
+La validación terminó con error. Sabiparche rechazó la sincronización y dejó constancia del rollback local.
 
-La validación terminó con error. Sabiparche rechazó la sincronización y verificó el rollback local.
+## Lo que no se puede afirmar
 
-## Resultado
+Esta rama no demuestra que la cabeza remota fuera revalidada después de una validación correcta, porque la comprobación auxiliar falló antes.
 
-No se alcanzó correctamente la fase necesaria para evaluar la carrera remota.
-
-## Estado
-
-**PRUEBA INVÁLIDA PARA REVALIDACIÓN REMOTA**
-
-Solo aporta evidencia del rechazo y rollback ante una validación fallida.
+Sirve como evidencia de rechazo seguro ante un comando de validación defectuoso.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
