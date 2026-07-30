@@ -67,13 +67,15 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría empírica: revalidación de la cabeza remota
+# La rama remota cambió durante `github sync`
 
-## Objetivo
+Esta es la reproducción válida del escenario de concurrencia.
 
-Comprobar que Sabiparche no confirma una sincronización cuando GitHub cambia durante la operación.
+## Preparación
 
-## Comando de Sabiparche probado
+Se creó una rama temporal y se publicó una primera mutación. Después se inició una sincronización de Sabiparche sobre esa cabeza.
+
+El comando utilizado fue:
 
 ```powershell
 sabiparche github sync `
@@ -82,56 +84,36 @@ sabiparche github sync `
     --validate '.\validacion-lenta.cmd'
 ```
 
-## Validación auxiliar
+En la rama se incluyó esta validación auxiliar para abrir una ventana temporal:
 
 ```batch
 @ping -n 16 127.0.0.1 >nul
 ```
 
-La validación auxiliar mantuvo abierta la operación el tiempo suficiente para que otro actor avanzara la rama remota.
+La salida conservada de la prueba no certifica por separado cada detalle interno de esa validación. Lo que sí quedó demostrado es que GitHub avanzó desde el commit inicial hasta un segundo commit mientras la operación estaba en curso.
 
-## Escenario ejecutado
+## El cambio competidor
 
-1. Se creó una rama temporal desde una base conocida.
-2. Se publicó una primera mutación remota.
-3. Sabiparche inició `github sync`.
-4. Sabiparche preparó una integración aislada.
-5. Se ejecutó una validación lenta.
-6. Durante la operación se publicó una segunda mutación.
-7. Sabiparche volvió a consultar la cabeza remota.
-8. La cabeza encontrada ya no coincidía con la usada inicialmente.
+Otro actor publicó una segunda mutación en la misma rama. A partir de ese momento, la cabeza utilizada inicialmente por Sabiparche ya no era la vigente.
 
-## Mutación
+Una integración preparada sobre el primer commit no podía considerarse válida sin volver a comprobar el estado remoto.
 
-Los dos commits representan estados sucesivos del repositorio. La segunda mutación invalida una afirmación construida exclusivamente sobre la primera cabeza.
+## Respuesta de Sabiparche
 
-## Compilación de afirmaciones
+Sabiparche consultó de nuevo la rama, detectó que la cabeza encontrada era distinta de la esperada y rechazó la sincronización.
 
-Sabiparche prepara una afirmación integrada sobre una base concreta. Esa afirmación solo puede confirmarse si las validaciones son correctas y la base continúa vigente.
+El repositorio local no terminó integrado sobre la cabeza obsoleta.
 
-## Validación
+## Qué demuestra
 
-Las órdenes declaradas mediante `--validate` se ejecutan sobre la integración aislada antes de modificar el repositorio local definitivo.
+- La base remota se comprueba antes de confirmar la operación.
+- Una mutación concurrente invalida la integración preparada sobre la cabeza anterior.
+- La operación devuelve error en lugar de declarar éxito obsoleto.
+- El estado local se conserva.
 
-## Certificación
+## Conclusión
 
-El rechazo constituye evidencia de que Sabiparche comparó la cabeza esperada con la cabeza encontrada antes de confirmar la operación.
-
-## Integración transaccional
-
-El repositorio local no fue actualizado con una integración basada en una cabeza remota obsoleta.
-
-## Concurrencia
-
-La segunda publicación simuló otro actor modificando GitHub mientras Sabiparche realizaba la operación.
-
-## Resultado
-
-Sabiparche detectó el cambio de cabeza remota, rechazó la sincronización, devolvió un código de error y conservó el estado local anterior.
-
-## Estado
-
-**PRUEBA EMPÍRICA SUPERADA: REVALIDACIÓN REMOTA**
+Prueba empírica superada: `github sync` detecta y rechaza un cambio concurrente de la cabeza remota.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
