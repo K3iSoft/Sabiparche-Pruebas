@@ -64,3 +64,74 @@ Sabiparche: proyecto público de pruebas operativo
 
 K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
 Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:INICIO -->
+
+# Auditoría empírica: revalidación de la cabeza remota
+
+## Objetivo
+
+Comprobar que Sabiparche no confirma una sincronización cuando GitHub cambia durante la operación.
+
+## Comando de Sabiparche probado
+
+```powershell
+sabiparche github sync `
+    --root <clon-local> `
+    --base auditoria-real/revalidacion-final-20260730-203042 `
+    --validate '.\validacion-lenta.cmd'
+```
+
+## Validación auxiliar
+
+```batch
+@ping -n 16 127.0.0.1 >nul
+```
+
+La validación auxiliar mantuvo abierta la operación el tiempo suficiente para que otro actor avanzara la rama remota.
+
+## Escenario ejecutado
+
+1. Se creó una rama temporal desde una base conocida.
+2. Se publicó una primera mutación remota.
+3. Sabiparche inició `github sync`.
+4. Sabiparche preparó una integración aislada.
+5. Se ejecutó una validación lenta.
+6. Durante la operación se publicó una segunda mutación.
+7. Sabiparche volvió a consultar la cabeza remota.
+8. La cabeza encontrada ya no coincidía con la usada inicialmente.
+
+## Mutación
+
+Los dos commits representan estados sucesivos del repositorio. La segunda mutación invalida una afirmación construida exclusivamente sobre la primera cabeza.
+
+## Compilación de afirmaciones
+
+Sabiparche prepara una afirmación integrada sobre una base concreta. Esa afirmación solo puede confirmarse si las validaciones son correctas y la base continúa vigente.
+
+## Validación
+
+Las órdenes declaradas mediante `--validate` se ejecutan sobre la integración aislada antes de modificar el repositorio local definitivo.
+
+## Certificación
+
+El rechazo constituye evidencia de que Sabiparche comparó la cabeza esperada con la cabeza encontrada antes de confirmar la operación.
+
+## Integración transaccional
+
+El repositorio local no fue actualizado con una integración basada en una cabeza remota obsoleta.
+
+## Concurrencia
+
+La segunda publicación simuló otro actor modificando GitHub mientras Sabiparche realizaba la operación.
+
+## Resultado
+
+Sabiparche detectó el cambio de cabeza remota, rechazó la sincronización, devolvió un código de error y conservó el estado local anterior.
+
+## Estado
+
+**PRUEBA EMPÍRICA SUPERADA: REVALIDACIÓN REMOTA**
+
+<!-- SABIPARCHE-AUDITORIA:FIN -->
+
