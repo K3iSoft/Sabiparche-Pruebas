@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "area": "synthetic",
+  "total_cases": 15,
+  "cases": [
+    {
+      "number": 1,
+      "name": "clean-integration",
+      "type": "positive",
+      "expected": "Acepta cambios compatibles."
+    },
+    {
+      "number": 2,
+      "name": "content-conflict",
+      "type": "negative",
+      "expected": "Rechaza conflicto de contenido."
+    },
+    {
+      "number": 3,
+      "name": "invalid-base-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA base malformado."
+    },
+    {
+      "number": 4,
+      "name": "invalid-head-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA head malformado."
+    },
+    {
+      "number": 5,
+      "name": "missing-head-commit",
+      "type": "negative",
+      "expected": "Rechaza commit inexistente."
+    },
+    {
+      "number": 6,
+      "name": "missing-repository",
+      "type": "negative",
+      "expected": "Rechaza repositorio inexistente."
+    },
+    {
+      "number": 7,
+      "name": "missing-verification-document",
+      "type": "negative",
+      "expected": "Rechaza documento inexistente."
+    },
+    {
+      "number": 8,
+      "name": "same-commit",
+      "type": "positive",
+      "expected": "Integra un commit consigo mismo."
+    },
+    {
+      "number": 9,
+      "name": "deterministic-evidence",
+      "type": "determinism",
+      "expected": "Produce el mismo evidence_hash."
+    },
+    {
+      "number": 10,
+      "name": "delete-edit-conflict",
+      "type": "negative",
+      "expected": "Rechaza borrar contra editar."
+    },
+    {
+      "number": 11,
+      "name": "rename-edit-behavior",
+      "type": "behavior",
+      "expected": "Devuelve un resultado definido para renombrar contra editar."
+    },
+    {
+      "number": 12,
+      "name": "foreign-commit",
+      "type": "negative",
+      "expected": "Rechaza commit de otro repositorio."
+    },
+    {
+      "number": 13,
+      "name": "dirty-repository-isolated",
+      "type": "isolation",
+      "expected": "Ignora archivos no rastreados."
+    },
+    {
+      "number": 14,
+      "name": "source-repository-unchanged",
+      "type": "isolation",
+      "expected": "No modifica el repositorio fuente."
+    },
+    {
+      "number": 15,
+      "name": "uppercase-sha-normalization",
+      "type": "compatibility",
+      "expected": "Normaliza SHAs en mayusculas."
+    }
+  ]
+}

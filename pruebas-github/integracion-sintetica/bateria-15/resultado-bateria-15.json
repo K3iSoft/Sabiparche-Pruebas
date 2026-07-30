@@ -1,0 +1,202 @@
+{
+  "schema": 2,
+  "generated_at": "2026-07-30T21:42:23.1126507Z",
+  "branch": "prueba/github-integracion-sintetica",
+  "area": "synthetic",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-branch-empirical-adversarial",
+  "classification": "PASS_EMPIRICAL",
+  "passed": true,
+  "fully_closed": true,
+  "total_tests": 15,
+  "passed_tests": 15,
+  "failed_tests": 0,
+  "failed_test_names": [],
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "clean-integration",
+      "type": "positive",
+      "expected": "Acepta cambios compatibles.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 2,
+      "name": "content-conflict",
+      "type": "negative",
+      "expected": "Rechaza conflicto de contenido.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: el comando fallo: git -C C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-integracion-sintetica\\repo merge-tree --write-tree 84e656ee6e70d88503550d7738a65364b37e619f 20bb2bd7fb50d251c347ed4db4d667632c12bc82\r\nstatus: Some(1)\r\nstdout: 27daf9475f2db55fece72d9f3fee0f1cb792453f\r\n100644 e79120aab4682bfe81153595c7d2ec1ad3bd3dd8 1\tbase.txt\r\n100644 336ce3f0fdabcd40401e1bba48937ee27796d904 2\tbase.txt\r\n100644 2322211fa80de05c77a8f059bec54c583464792f 3\tbase.txt\r\n\r\nAuto-merging base.txt\r\nCONFLICT (content): Merge conflict in base.txt\r\nstderr: \r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 3,
+      "name": "invalid-base-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA base malformado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash no valido en synthetic.base_sha: sha-invalido\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 4,
+      "name": "invalid-head-sha",
+      "type": "negative",
+      "expected": "Rechaza SHA head malformado.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: hash no valido en synthetic.head_sha: sha-invalido\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 5,
+      "name": "missing-head-commit",
+      "type": "negative",
+      "expected": "Rechaza commit inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: el comando fallo: git -C C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-integracion-sintetica\\repo merge-tree --write-tree b0056ca5e95a90f592b760b7bb8b5a182cea8cac aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\nstatus: Some(1)\r\nstdout: \r\nstderr: merge-tree: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa - not something we can merge\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 6,
+      "name": "missing-repository",
+      "type": "negative",
+      "expected": "Rechaza repositorio inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en synthetic.repository_root: no es un repositorio Git\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 7,
+      "name": "missing-verification-document",
+      "type": "negative",
+      "expected": "Rechaza documento inexistente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en synthetic.verification_document: no existe el documento de verificacion\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 8,
+      "name": "same-commit",
+      "type": "positive",
+      "expected": "Integra un commit consigo mismo.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 9,
+      "name": "deterministic-evidence",
+      "type": "determinism",
+      "expected": "Produce el mismo evidence_hash.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "hash_2": "63cbfe744ffc8920007d0cbf5c0e357c3b03ffff6b8844c236a273b86895ae1b",
+        "hash_1": "63cbfe744ffc8920007d0cbf5c0e357c3b03ffff6b8844c236a273b86895ae1b"
+      }
+    },
+    {
+      "number": 10,
+      "name": "delete-edit-conflict",
+      "type": "negative",
+      "expected": "Rechaza borrar contra editar.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: el comando fallo: git -C C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-integracion-sintetica\\repo merge-tree --write-tree 87916f2c6140b5297add2497f8ca8a85a042c6e0 6d806b5104203ea2d8b115c295e2c5c6c7408a4a\r\nstatus: Some(1)\r\nstdout: a960ee501987cf926e398fe687896472d88266ed\r\n100644 e79120aab4682bfe81153595c7d2ec1ad3bd3dd8 1\tbase.txt\r\n100644 08fea59b416bed994e3a148c7a85ad2152627624 3\tbase.txt\r\n\r\nCONFLICT (modify/delete): base.txt deleted in 87916f2c6140b5297add2497f8ca8a85a042c6e0 and modified in 6d806b5104203ea2d8b115c295e2c5c6c7408a4a.  Version 6d806b5104203ea2d8b115c295e2c5c6c7408a4a of base.txt left in tree.\r\nstderr: \r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 11,
+      "name": "rename-edit-behavior",
+      "type": "behavior",
+      "expected": "Devuelve un resultado definido para renombrar contra editar.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 12,
+      "name": "foreign-commit",
+      "type": "negative",
+      "expected": "Rechaza commit de otro repositorio.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: el comando fallo: git -C C:\\Users\\T-1000\\AppData\\Local\\Temp\\sabiparche-bateria-ramas-864dc82f33ca4724aa5118065ad66947\\data-integracion-sintetica\\repo merge-tree --write-tree b0056ca5e95a90f592b760b7bb8b5a182cea8cac a997dd4d0d3aa8ce815908c34e59d4a3f31de38e\r\nstatus: Some(1)\r\nstdout: \r\nstderr: merge-tree: a997dd4d0d3aa8ce815908c34e59d4a3f31de38e - not something we can merge\r\n",
+        "exit_code": 70
+      }
+    },
+    {
+      "number": 13,
+      "name": "dirty-repository-isolated",
+      "type": "isolation",
+      "expected": "Ignora archivos no rastreados.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    },
+    {
+      "number": 14,
+      "name": "source-repository-unchanged",
+      "type": "isolation",
+      "expected": "No modifica el repositorio fuente.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "status_after": "",
+        "exit_code": 0,
+        "status_before": ""
+      }
+    },
+    {
+      "number": 15,
+      "name": "uppercase-sha-normalization",
+      "type": "compatibility",
+      "expected": "Normaliza SHAs en mayusculas.",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": null,
+        "exit_code": 0
+      }
+    }
+  ]
+}
