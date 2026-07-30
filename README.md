@@ -64,3 +64,46 @@ Sabiparche: proyecto público de pruebas operativo
 
 K3iSoft mantiene este repositorio como entorno oficial de pruebas públicas de
 Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:INICIO -->
+
+# Auditoría empírica: segundo ensayo de sincronización concurrente
+
+## Objetivo
+
+Repetir de forma independiente el escenario de cambio remoto durante una sincronización.
+
+## Comando de Sabiparche ensayado
+
+```powershell
+sabiparche github sync `
+    --root <clon-local> `
+    --base auditoria-real/verificacion-sync-20260730-202219 `
+    --validate <validacion-lenta>
+```
+
+## Conceptos previstos
+
+- Mutación remota inicial.
+- Compilación de una afirmación sobre una cabeza concreta.
+- Validación de la integración provisional.
+- Mutación competidora.
+- Revalidación de la cabeza remota.
+- Confirmación o rechazo transaccional.
+
+## Problema de la prueba
+
+La validación lenta no se ejecutó como estaba previsto. El intérprete fue iniciado sin conservar la orden completa.
+
+## Resultado
+
+La clasificación inicial fue un falso positivo causado por el montaje auxiliar.
+
+## Estado
+
+**PRUEBA INVÁLIDA**
+
+No demuestra un defecto de Sabiparche.
+
+<!-- SABIPARCHE-AUDITORIA:FIN -->
+
