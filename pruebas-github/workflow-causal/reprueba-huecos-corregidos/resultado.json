@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:59:28.6545422Z",
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "branch": "prueba/github-workflow-causal",
+  "area": "workflow",
+  "test": "reprueba-publica-huecos-corregidos",
+  "classification": "PASS_EMPIRICAL",
+  "passed": true,
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "failed_test_names": [],
+  "main_branch_modified": false,
+  "readme_modified": false,
+  "production_repository_modified": false,
+  "force_push_used": false,
+  "tests": [
+    {
+      "number": 1,
+      "name": "baseline-minimal",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "",
+        "exit_code": 0,
+        "observed_accept": true,
+        "expected_accept": true
+      }
+    },
+    {
+      "number": 2,
+      "name": "reject-contents-write",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en permissions.contents: el workflow causal solo admite none o read para este permiso\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 3,
+      "name": "reject-actions-write",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en permissions.actions: el workflow causal solo admite none o read para este permiso\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 4,
+      "name": "reject-all-write",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: dato no valido en permissions.contents: el workflow causal solo admite none o read para este permiso\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    },
+    {
+      "number": 5,
+      "name": "reject-unknown-permission",
+      "passed": true,
+      "classification": "PASS_EMPIRICAL",
+      "evidence": {
+        "stderr": "sabiparche github: error JSON: unknown field `invented_scope`, expected one of `contents`, `checks`, `pull_requests`, `actions`, `attestations`, `id_token` at line 17 column 22\r\n",
+        "exit_code": 70,
+        "observed_accept": false,
+        "expected_accept": false
+      }
+    }
+  ]
+}
