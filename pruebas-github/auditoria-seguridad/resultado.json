@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "generated_at": "2026-07-30T21:21:25.1704891Z",
+  "test": "github-auditoria-seguridad",
+  "passed": true,
+  "repository": "K3iSoft/Sabiparche-Pruebas",
+  "scope": "public-test-branch",
+  "sensitive_information_included": false,
+  "production_repository_modified": false,
+  "checks": {
+    "pull_request_target_detected": true,
+    "unsafe_workflow_rejected": true,
+    "clean_control_findings": 0,
+    "unpinned_action_detected": true,
+    "token_preview_redacted": true,
+    "fake_token_rejected": true,
+    "fake_token_finding_count": 1,
+    "global_write_detected": true,
+    "clean_control_accepted": true
+  }
+}
