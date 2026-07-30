@@ -67,13 +67,9 @@ Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:INICIO -->
 
-# Auditoría empírica: segundo ensayo de sincronización concurrente
+# Segunda reproducción del escenario de carrera
 
-## Objetivo
-
-Repetir de forma independiente el escenario de cambio remoto durante una sincronización.
-
-## Comando de Sabiparche ensayado
+Esta rama corresponde a un segundo intento de reproducir un cambio remoto durante una sincronización.
 
 ```powershell
 sabiparche github sync `
@@ -82,28 +78,17 @@ sabiparche github sync `
     --validate <validacion-lenta>
 ```
 
-## Conceptos previstos
+La idea era construir una integración sobre un commit inicial, mantener activa la validación y publicar después un commit competidor.
 
-- Mutación remota inicial.
-- Compilación de una afirmación sobre una cabeza concreta.
-- Validación de la integración provisional.
-- Mutación competidora.
-- Revalidación de la cabeza remota.
-- Confirmación o rechazo transaccional.
+En términos de Sabiparche, se pretendía comprobar si una afirmación preparada sobre una base concreta seguía siendo aceptada después de que esa base dejara de ser la cabeza remota.
 
-## Problema de la prueba
+## Resultado real del ensayo
 
-La validación lenta no se ejecutó como estaba previsto. El intérprete fue iniciado sin conservar la orden completa.
+La validación lenta volvió a quedar mal encapsulada. La separación temporal necesaria no quedó demostrada y la primera clasificación obtenida fue un falso positivo del montaje de prueba.
 
-## Resultado
+## Conclusión
 
-La clasificación inicial fue un falso positivo causado por el montaje auxiliar.
-
-## Estado
-
-**PRUEBA INVÁLIDA**
-
-No demuestra un defecto de Sabiparche.
+La rama documenta un intento fallido de reproducción. No demuestra un defecto de Sabiparche.
 
 <!-- SABIPARCHE-AUDITORIA:FIN -->
 
