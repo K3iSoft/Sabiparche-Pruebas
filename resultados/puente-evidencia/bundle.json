@@ -1,0 +1,24 @@
+{
+  "operation": {
+    "operation_id": "github-real-evidence-20260731-053801",
+    "result": "GreenComplete",
+    "reason": "Prueba real del puente de evidencia publicada en GitHub",
+    "certified_tree_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "evidence_hash": "ea1e5a9edf22ede074e3d82302626ad237a144ae6ea8a3f087dd86f60714dbb0"
+  },
+  "manifest": {
+    "operation_id": "github-real-evidence-20260731-053801",
+    "manifest_path": "C:\\Users\\T-1000\\Desktop\\Sabiparche-Pruebas\\resultados\\puente-evidencia\\manifest.json",
+    "manifest_hash": "a623a6595b1a25cfc7a016c554848c6a4ce971e6699e97cb0b8f03e41d4dabd8",
+    "root_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "certificate": {
+    "operation_id": "github-real-evidence-20260731-053801",
+    "certificate_path": "C:\\Users\\T-1000\\Desktop\\Sabiparche-Pruebas\\resultados\\puente-evidencia\\certificate.json",
+    "certificate_hash": "d9a04023c8093602883b56f4abf173270ce8d63242728f50b8288c874760a9de",
+    "certified_tree_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "lineage": null
+  },
+  "fingerprints": [],
+  "bundle_hash": "8963f893bcf9dbdacb839782f6f85cdb56b3d15af7140c31bf712d7083f3a309"
+}

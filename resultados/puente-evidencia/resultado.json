@@ -1,0 +1,26 @@
+{
+  "test": "sabigit-evidence-bridge-github-real",
+  "operation_id": "github-real-evidence-20260731-053801",
+  "branch": "prueba/publicacion-nueva-ancla",
+  "repository": "https://github.com/K3iSoft/Sabiparche-Pruebas.git",
+  "local": {
+    "cli_exit_code": 0,
+    "cli_output": "{\r\n  \"bundle\": \"C:\\\\Users\\\\T-1000\\\\Desktop\\\\Sabiparche-Pruebas\\\\resultados\\\\puente-evidencia\\\\bundle.json\",\r\n  \"bundle_hash\": \"8963f893bcf9dbdacb839782f6f85cdb56b3d15af7140c31bf712d7083f3a309\",\r\n  \"operation_id\": \"github-real-evidence-20260731-053801\"\r\n}",
+    "operation_hash": "ea1e5a9edf22ede074e3d82302626ad237a144ae6ea8a3f087dd86f60714dbb0",
+    "manifest_hash": "a623a6595b1a25cfc7a016c554848c6a4ce971e6699e97cb0b8f03e41d4dabd8",
+    "certificate_hash": "d9a04023c8093602883b56f4abf173270ce8d63242728f50b8288c874760a9de",
+    "bundle_file_hash": "9161d5fdd44fb7373eda923663fa6454b4d8054670d57c8b3634bf3e77627db6",
+    "bundle_hash": "8963f893bcf9dbdacb839782f6f85cdb56b3d15af7140c31bf712d7083f3a309",
+    "operation_hash_matches": true,
+    "manifest_hash_matches": true,
+    "certificate_hash_matches": true
+  },
+  "github": {
+    "commit_sha": "c62004d6ab30436f23f9fc7757bbb5233a8585ce",
+    "remote_sha": "c62004d6ab30436f23f9fc7757bbb5233a8585ce",
+    "push_confirmed": true,
+    "workflow_expected": "Proyecto público de pruebas",
+    "evidence_path": "resultados/puente-evidencia"
+  },
+  "overall_passed": true
+}
